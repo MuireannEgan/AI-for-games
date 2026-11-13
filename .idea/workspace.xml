@@ -1,7 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a9dfef3d-afae-4b27-ab83-a7b54a20e703" name="Changes" comment="" />
+    <list default="true" id="a9dfef3d-afae-4b27-ab83-a7b54a20e703" name="Changes" comment="base AI">
+      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/CombatSystem.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/CombatSystem/MonsterCombat.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/MonsterAI.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/MonsterAI.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/MonsterAction.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/MonsterAction.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/MonsterMemory.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/MonsterMemory.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/MonsterState.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/MonsterState.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/DecisionSystem.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/DecisionSystem/Calculator.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/DecisionSystem/Calculator.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/DecisionSystem/DecisionMaker.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/DecisionSystem/DecisionMaker.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/MovementSystem.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/MovementSystem/MonsterMovement.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/MovementSystem/MonsterMovement.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/PerceptionSystem.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/PerceptionSystem/DebugPerception.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/PerceptionSystem/DebugPerception.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/PerceptionSystem/MonsterPerception.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/PerceptionSystem/MonsterPerception.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CombatSystem/MonsterCombat.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CombatSystem" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/EnemyAI..cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/HearingSystem" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MemorySystem" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MovementSystem" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VisionSystem" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -25,6 +60,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
@@ -34,6 +70,14 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\muire\AI-for-games\Assets\Scripts\CombatSystem" />
+      <recent name="C:\Users\muire\AI-for-games\Assets\Scripts\MovementSystem" />
+      <recent name="C:\Users\muire\AI-for-games\Assets\Scripts" />
+      <recent name="C:\Users\muire\AI-for-games\Assets\Scripts\Core" />
+    </key>
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="a9dfef3d-afae-4b27-ab83-a7b54a20e703" name="Changes" comment="" />
@@ -47,5 +91,9 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="base AI" />
+    <option name="LAST_COMMIT_MESSAGE" value="base AI" />
   </component>
 </project>
