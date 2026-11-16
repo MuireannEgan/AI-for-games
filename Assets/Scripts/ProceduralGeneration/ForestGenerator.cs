@@ -83,6 +83,14 @@ public class ForestGenerator : MonoBehaviour
     [SerializeField, Min(0f)]
     private float treePathClearance = 1.25f;
 
+    [Header("Vegetation Spacing")]
+    [SerializeField, Min(0f)] private float treeSpacingBuffer = 0.15f;
+    [SerializeField, Range(0.1f, 1f)] private float treeFootprintScale = 0.45f;
+    [SerializeField, Min(0f)] private float bushSpacingBuffer = 0.1f;
+    [SerializeField, Range(0.1f, 1f)] private float bushFootprintScale = 0.75f;
+    [SerializeField, Min(0f)] private float rockSpacingBuffer = 0.1f;
+    [SerializeField, Range(0.1f, 1f)] private float rockFootprintScale = 0.85f;
+
     [Header("Bush Generation")]
     [Tooltip("Legacy bush prefabs, used if no asset database is assigned.")]
     [SerializeField] private GameObject[] bushPrefabs;
@@ -128,6 +136,10 @@ public class ForestGenerator : MonoBehaviour
     [SerializeField]
     private Vector2 groundCoverHeightRange =
         new Vector2(0.2f, 0.65f);
+
+    [SerializeField, Min(1)] private int groundCoverInstancesPerTile = 5;
+    [SerializeField, Min(0f)] private float groundCoverPathClearance = 0.25f;
+    [SerializeField, Min(0f)] private float groundCoverLandmarkClearance = 3f;
 
     [Header("Cave Settings")]
     [SerializeField, Min(1)] private int caveCount = 3;
@@ -393,6 +405,8 @@ public class ForestGenerator : MonoBehaviour
         List<Vector3> treePositions =
             new List<Vector3>();
 
+        VegetationSpacing vegetationSpacing = new VegetationSpacing();
+
         bool useDatabase = assetDatabase != null;
 
         Func<GameObject> chooseTree = () => useDatabase
@@ -433,7 +447,11 @@ public class ForestGenerator : MonoBehaviour
                 treePositions,
                 useDatabase
                     ? importedTreeHeightOffset
-                    : 2.5f);
+                    : 2.5f,
+                null,
+                vegetationSpacing,
+                treeSpacingBuffer,
+                treeFootprintScale);
 
         bushCount =
             VegetationGenerator.GenerateBushes(
@@ -460,7 +478,11 @@ public class ForestGenerator : MonoBehaviour
                 bushClusteringStrength,
                 bushPositionVariation,
                 bushScaleRange,
-                bushTreeClearance);
+                bushTreeClearance,
+                null,
+                vegetationSpacing,
+                bushSpacingBuffer,
+                bushFootprintScale);
 
         rockCount = useDatabase
             ? VegetationGenerator.GenerateRocks(
@@ -487,7 +509,11 @@ public class ForestGenerator : MonoBehaviour
                 treePositions,
                 rockDensity,
                 rockScaleRange,
-                bushTreeClearance)
+                bushTreeClearance,
+                null,
+                vegetationSpacing,
+                rockSpacingBuffer,
+                rockFootprintScale)
             : 0;
 
         // Spawn ground cover last to preserve tree, bush and rock placement.
@@ -513,14 +539,17 @@ public class ForestGenerator : MonoBehaviour
                         altarPosition)
                     || walkablePaths.Contains(tile),
                 position =>
-                    VegetationClearance.IsBushPositionClear(
+                    VegetationClearance.IsGroundCoverPositionClear(
                         context,
-                        position),
+                        position,
+                        groundCoverPathClearance,
+                        groundCoverLandmarkClearance),
                 groundCoverDensity,
                 groundCoverNoiseScale,
                 groundCoverClusteringStrength,
                 groundCoverPositionVariation,
-                groundCoverHeightRange)
+                groundCoverHeightRange,
+                groundCoverInstancesPerTile)
             : 0;
 
         return treeCount;
@@ -600,7 +629,16 @@ public class ForestGenerator : MonoBehaviour
             groundCoverNoiseScale <= 0f ||
             groundCoverPositionVariation < 0f ||
             groundCoverHeightRange.x <= 0f ||
-            groundCoverHeightRange.y < groundCoverHeightRange.x)
+            groundCoverHeightRange.y < groundCoverHeightRange.x ||
+            groundCoverInstancesPerTile < 1 ||
+            groundCoverPathClearance < 0f ||
+            groundCoverLandmarkClearance < 0f ||
+            treeSpacingBuffer < 0f ||
+            bushSpacingBuffer < 0f ||
+            rockSpacingBuffer < 0f ||
+            treeFootprintScale <= 0f ||
+            bushFootprintScale <= 0f ||
+            rockFootprintScale <= 0f)
         {
             Debug.LogError(
                 "Forest generation failed: invalid settings.",

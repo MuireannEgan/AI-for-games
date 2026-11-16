@@ -80,6 +80,41 @@ public static class VegetationGenerator
         return found;
     }
 
+    private static bool HasSolidCollider(GameObject instance)
+    {
+        foreach (Collider collider in instance.GetComponentsInChildren<Collider>())
+        {
+            if (collider.enabled && !collider.isTrigger)
+                return true;
+        }
+
+        return false;
+    }
+
+    private static void AddVegetationCollider(GameObject instance, ForestAssetType type)
+    {
+        if (instance == null || HasSolidCollider(instance))
+            return;
+
+        if (type != ForestAssetType.Tree &&
+            type != ForestAssetType.Bush &&
+            type != ForestAssetType.Rock)
+            return;
+
+        foreach (MeshFilter filter in instance.GetComponentsInChildren<MeshFilter>())
+        {
+            if (filter.sharedMesh == null || !filter.gameObject.activeInHierarchy)
+                continue;
+
+            if (filter.GetComponent<Collider>() != null)
+                continue;
+
+            MeshCollider collider = filter.gameObject.AddComponent<MeshCollider>();
+            collider.sharedMesh = filter.sharedMesh;
+            collider.convex = false;
+        }
+    }
+
     // Uses the FBX's existing rotation rather than
     // Quaternion.identity, which made the models sideways.
     private static GameObject SpawnVegetation(
@@ -118,6 +153,28 @@ public static class VegetationGenerator
         return instance;
     }
 
+    private static bool AcceptPlacement(
+        GameObject instance,
+        VegetationSpacing spacing,
+        float buffer,
+        float footprintScale)
+    {
+        if (instance == null)
+            return false;
+
+        if (spacing == null || spacing.TryRegister(instance, buffer, footprintScale))
+            return true;
+
+        instance.SetActive(false);
+
+        if (Application.isPlaying)
+            UnityEngine.Object.Destroy(instance);
+        else
+            UnityEngine.Object.DestroyImmediate(instance);
+
+        return false;
+    }
+
     // TREES
 
     public static int GenerateTrees(
@@ -137,7 +194,10 @@ public static class VegetationGenerator
         float treePositionVariation,
         List<Vector3> treePositions = null,
         float treeHeightOffset = 0f,
-        Vector2? treeHeightRange = null)
+        Vector2? treeHeightRange = null,
+        VegetationSpacing spacing = null,
+        float spacingBuffer = 0f,
+        float footprintScale = 1f)
     {
         int treeCount = 0;
 
@@ -203,9 +263,10 @@ public static class VegetationGenerator
                     heights,
                     treeHeightOffset);
 
-                if (tree == null)
+                if (!AcceptPlacement(tree, spacing, spacingBuffer, footprintScale))
                     continue;
 
+                AddVegetationCollider(tree, ForestAssetType.Tree);
                 tree.name = $"Tree_{x}_{z}";
 
                 // Store actual final position for bush clearance.
@@ -239,7 +300,10 @@ public static class VegetationGenerator
         float positionVariation,
         Vector2 scaleRange,
         float treeClearance,
-        Vector2? bushHeightRange = null)
+        Vector2? bushHeightRange = null,
+        VegetationSpacing spacing = null,
+        float spacingBuffer = 0f,
+        float footprintScale = 1f)
     {
         if (chooseBush == null || density <= 0f)
             return 0;
@@ -342,6 +406,10 @@ public static class VegetationGenerator
                 // Scaling can move the mesh bottom.
                 AlignToGround(bush, position.y);
 
+                if (!AcceptPlacement(bush, spacing, spacingBuffer, footprintScale))
+                    continue;
+
+                AddVegetationCollider(bush, ForestAssetType.Bush);
                 bush.name = $"Bush_{x}_{z}";
                 bushCount++;
             }
@@ -366,7 +434,10 @@ public static class VegetationGenerator
         float density,
         Vector2 scaleRange,
         float treeClearance,
-        Vector2? rockHeightRange = null)
+        Vector2? rockHeightRange = null,
+        VegetationSpacing spacing = null,
+        float spacingBuffer = 0f,
+        float footprintScale = 1f)
     {
         if (chooseRock == null || density <= 0f)
             return 0;
@@ -450,6 +521,10 @@ public static class VegetationGenerator
 
                 AlignToGround(rock, position.y);
 
+                if (!AcceptPlacement(rock, spacing, spacingBuffer, footprintScale))
+                    continue;
+
+                AddVegetationCollider(rock, ForestAssetType.Rock);
                 rock.name = $"Rock_{x}_{z}";
                 count++;
             }
@@ -474,9 +549,10 @@ public static class VegetationGenerator
         float noiseScale,
         float clusteringStrength,
         float positionVariation,
-        Vector2 heightRange)
+        Vector2 heightRange,
+        int instancesPerTile = 5)
     {
-        if (chooseGroundCover == null || density <= 0f)
+        if (chooseGroundCover == null || density <= 0f || instancesPerTile <= 0)
             return 0;
 
         int count = 0;
@@ -505,48 +581,50 @@ public static class VegetationGenerator
                     (noise - 0.5f) *
                     2f * clusteringStrength);
 
-                if (random.NextDouble() >= localDensity)
-                    continue;
-
-                Vector3 offset = new Vector3(
-                    ((float)random.NextDouble() * 2f - 1f) *
-                        positionVariation,
-                    0f,
-                    ((float)random.NextDouble() * 2f - 1f) *
-                        positionVariation);
-
-                Vector3 position =
-                    gridToWorld(tile) +
-                    forestTransform.TransformVector(offset);
-
-                if (isPositionClear != null &&
-                    !isPositionClear(position))
-                    continue;
-
-                GameObject prefab = chooseGroundCover();
-
-                if (prefab == null)
-                    continue;
-
-                GameObject groundCover = SpawnVegetation(
-                    prefab,
-                    position,
-                    generatedParent,
-                    random,
-                    heightRange);
-
-                if (groundCover == null)
-                    continue;
-
-                // Ground cover must not block player or enemy movement.
-                foreach (Collider collider in
-                         groundCover.GetComponentsInChildren<Collider>())
+                for (int attempt = 0; attempt < instancesPerTile; attempt++)
                 {
-                    collider.enabled = false;
-                }
+                    if (random.NextDouble() >= localDensity)
+                        continue;
 
-                groundCover.name = $"GroundCover_{x}_{z}";
-                count++;
+                    Vector3 offset = new Vector3(
+                        ((float)random.NextDouble() * 2f - 1f) *
+                            positionVariation,
+                        0f,
+                        ((float)random.NextDouble() * 2f - 1f) *
+                            positionVariation);
+
+                    Vector3 position =
+                        gridToWorld(tile) +
+                        forestTransform.TransformVector(offset);
+
+                    if (isPositionClear != null &&
+                        !isPositionClear(position))
+                        continue;
+
+                    GameObject prefab = chooseGroundCover();
+
+                    if (prefab == null)
+                        continue;
+
+                    GameObject groundCover = SpawnVegetation(
+                        prefab,
+                        position,
+                        generatedParent,
+                        random,
+                        heightRange);
+
+                    if (groundCover == null)
+                        continue;
+
+                    foreach (Collider collider in
+                             groundCover.GetComponentsInChildren<Collider>())
+                    {
+                        collider.enabled = false;
+                    }
+
+                    groundCover.name = $"GroundCover_{x}_{z}_{attempt}";
+                    count++;
+                }
             }
         }
 
