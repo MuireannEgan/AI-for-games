@@ -1,0 +1,543 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 125cdb9b31291c64894d69561f70b817, type: 3}
+  m_Name: ForestAssetDatabase
+  m_EditorClassIdentifier: Assembly-CSharp::ForestAssetDatabase
+  assets:
+  - prefab: {fileID: 919132149155446097, guid: 78b905dcff921424e9d4a6307db7e634, type: 3}
+    type: 0
+    seasons: 1
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 4c53c412fd25593429353c6a3f6a86f5, type: 3}
+    type: 0
+    seasons: 1
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: b6f08d20b963f934aa9fba129b1decbe, type: 3}
+    type: 0
+    seasons: 1
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 65a416b077353f2469e28692218a9d74, type: 3}
+    type: 0
+    seasons: 1
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 5e472257cf5a2ba45b606dfb52eb6f1d, type: 3}
+    type: 0
+    seasons: 1
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 30e8e70d589d3a04aaefc0d321cfea12, type: 3}
+    type: 0
+    seasons: 2
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 918d3717c835bf04987fc1527dc05b59, type: 3}
+    type: 0
+    seasons: 2
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 69983884d481e0047bfbe3dee9cef91b, type: 3}
+    type: 0
+    seasons: 2
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 9b1c99f009277d54d8075afa2aa57190, type: 3}
+    type: 0
+    seasons: 2
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 592aa910f8a7d4f4ea233f81c12536e6, type: 3}
+    type: 0
+    seasons: 2
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 78cba2058d7afb64eade1e83e1dd0f33, type: 3}
+    type: 0
+    seasons: 3
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: dd9c590d1e3be5c4dbad63eed9926a68, type: 3}
+    type: 0
+    seasons: 3
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: c3cbe4263dbf7ef419a96c5a94e14d86, type: 3}
+    type: 0
+    seasons: 3
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 94cb1d1b6a5e2d34eb1f2878d7f29d95, type: 3}
+    type: 0
+    seasons: 3
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: ce826acd6bcd89d439bd304350fa0e54, type: 3}
+    type: 0
+    seasons: 3
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 319fcd29666cfde42bdf7f9af56c358a, type: 3}
+    type: 0
+    seasons: 4
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 5920daa76c4f4fa48aff971fadd1eb91, type: 3}
+    type: 0
+    seasons: 4
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 45c79b89dfc340f499c401ea9fe33bd1, type: 3}
+    type: 0
+    seasons: 4
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: d86e6885e67e5524cbe0f9a4a6e161f4, type: 3}
+    type: 0
+    seasons: 4
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: f7fd151d01ff28e41a2497e331b2fed8, type: 3}
+    type: 0
+    seasons: 4
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: b92be58e5791bf14baefa98e2fed9a62, type: 3}
+    type: 0
+    seasons: 4
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 6d8bfd51a1b3bc149a93915b89ee8360, type: 3}
+    type: 0
+    seasons: 4
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 86995bc756e9bd24ab8182792a139332, type: 3}
+    type: 0
+    seasons: 4
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 4d8fa5ce7dfb2184ab8accdef46a23cd, type: 3}
+    type: 0
+    seasons: 4
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 64ca962b20d1e514a92396c8b985070e, type: 3}
+    type: 0
+    seasons: 4
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 3e1a678ebd45236418922e31f7735898, type: 3}
+    type: 1
+    seasons: 3
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 4ebca40dfa4d5724fad26fdb8aa2643d, type: 3}
+    type: 1
+    seasons: 3
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 3e01b34e65034f34da0b0bab78bf5425, type: 3}
+    type: 1
+    seasons: 3
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 07d1378561ea2f04b85a911c4c5580f6, type: 3}
+    type: 1
+    seasons: 3
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: c9edd9d30ebe2224eb55160515dcfb46, type: 3}
+    type: 1
+    seasons: 4
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 9a9a8cd0870395b48abaa33280e1a403, type: 3}
+    type: 1
+    seasons: 4
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: cea6a731db90f0a41a3902eaec8c7eb9, type: 3}
+    type: 0
+    seasons: 1
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: ee58967832e09dc4281ebd683b40fd90, type: 3}
+    type: 0
+    seasons: 1
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 63c46f499653a944d908aa3ea58a9171, type: 3}
+    type: 0
+    seasons: 1
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: c49c0f4b77a9a1f4a869f0317e47ed42, type: 3}
+    type: 0
+    seasons: 1
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: bce4fa3364959c84985153f80814c7fd, type: 3}
+    type: 0
+    seasons: 1
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: bee2a088d1d67cc4eb5e209fe366a35f, type: 3}
+    type: 0
+    seasons: 2
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: aa12c5d80ac6465428711fca2dd8cc25, type: 3}
+    type: 0
+    seasons: 2
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 9c495db16a4d7ca4a87b1b7c0668dbe9, type: 3}
+    type: 0
+    seasons: 2
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 91a7e5b3907746e4a90bc82b5fcf271c, type: 3}
+    type: 0
+    seasons: 2
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 73111c7e753cf0f42b95747f82b93b84, type: 3}
+    type: 0
+    seasons: 2
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 865f6d4a0ab8e874fbd5236c4e2d7a02, type: 3}
+    type: 0
+    seasons: 3
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 440385a78ab65ac4f8f5a5c7f461e93c, type: 3}
+    type: 0
+    seasons: 3
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 77fca99bd11e86b4cac38359dc535305, type: 3}
+    type: 0
+    seasons: 3
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: f69fe2e3938fe224aa1c71f75e2984a3, type: 3}
+    type: 0
+    seasons: 3
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 6ac1abaac4e5665488d60c771f277042, type: 3}
+    type: 0
+    seasons: 3
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 87210ca353a44b642938897404c33fdc, type: 3}
+    type: 0
+    seasons: 4
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: cad5dae368b2eb04aa270082776c217a, type: 3}
+    type: 0
+    seasons: 4
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 4916a669d6822ce4aa541a9e3a5bf171, type: 3}
+    type: 0
+    seasons: 4
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 4142e33961f806549a641c5c0a7fb2b2, type: 3}
+    type: 0
+    seasons: 4
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: bca549aea6fe9f247a8c47eba234f454, type: 3}
+    type: 0
+    seasons: 4
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 697b0558d57a9014092253d93e4502e3, type: 3}
+    type: 0
+    seasons: 4
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 8b36a8906d3d10c4dafd3c0ea4f60e14, type: 3}
+    type: 0
+    seasons: 4
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: fb6b7595bfbd7f74da088b554c410c0b, type: 3}
+    type: 0
+    seasons: 4
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 2d886e23f57b31d47a3a5ddc243c7a8f, type: 3}
+    type: 0
+    seasons: 4
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 14939e84812a45b4f9184b14cd79f60f, type: 3}
+    type: 0
+    seasons: 4
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: d11a039b2c2ecfa49a4aea783e1a58a9, type: 3}
+    type: 3
+    seasons: 1
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 5cccd22b50cf5b648b6edcc314d89818, type: 3}
+    type: 3
+    seasons: 3
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 2f017a1bc5421f54d9fd7bbf1463fbfb, type: 3}
+    type: 3
+    seasons: 3
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 29934c0e6c996dc4b9569d747dd4d919, type: 3}
+    type: 3
+    seasons: 3
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: d213f66270df88949835aad240680f04, type: 3}
+    type: 0
+    seasons: 1
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: f2f2f6cb0ef76514d92a961ab413f32b, type: 3}
+    type: 0
+    seasons: 1
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 1631cc47b683b0c41b17d07ed80f0032, type: 3}
+    type: 0
+    seasons: 1
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: d2f413e0d4502ee4984456f32bd84f7d, type: 3}
+    type: 0
+    seasons: 1
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 7f10d22dc13489e4ebec5ec80c907ee8, type: 3}
+    type: 0
+    seasons: 1
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 3d30590be8e5eef4aad2a7d5e484ba47, type: 3}
+    type: 0
+    seasons: 2
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 6ba9aa202ad68dc40920cf4d76c16b98, type: 3}
+    type: 0
+    seasons: 2
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 3b26ccd83fe24ca449e6df58450af40c, type: 3}
+    type: 0
+    seasons: 2
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 55e51a8d6e24ef14196ab060cd418617, type: 3}
+    type: 0
+    seasons: 2
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: e737ea2a55fd6134b959c3af790decc1, type: 3}
+    type: 0
+    seasons: 2
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: b21760f06f250774ca0f261c4681d946, type: 3}
+    type: 0
+    seasons: 4
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: e4d8e0bbc292e774ab7d59e4510e6b63, type: 3}
+    type: 0
+    seasons: 4
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 9f2a7b06a4cc4144d83a5a6d7c876bf8, type: 3}
+    type: 0
+    seasons: 4
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: f83bb71e537979940b8fe3c82732a4d6, type: 3}
+    type: 0
+    seasons: 4
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 1e97753beed25fc4cbe42dc6ee35562f, type: 3}
+    type: 0
+    seasons: 4
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 040d5dc2aebcaff41a1f31f68f4673f5, type: 3}
+    type: 3
+    seasons: 3
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: b1dda41344b137741b048770addf36d1, type: 3}
+    type: 3
+    seasons: 3
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 1e48cd48df71a0a46a1df994d0716452, type: 3}
+    type: 3
+    seasons: 3
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: a7fc608832a797a48962cf3a9b137bb0, type: 3}
+    type: 3
+    seasons: 3
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 3bb7423ef1468b7428ede4d570585657, type: 3}
+    type: 3
+    seasons: 3
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 89829996fbf0f1e4da9b5bf7a0314d6a, type: 3}
+    type: 2
+    seasons: 7
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 406c66874166a7f4d8a1989426666e33, type: 3}
+    type: 2
+    seasons: 7
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: e2b4759503f92134e9516f04961182fb, type: 3}
+    type: 2
+    seasons: 7
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: c732556c2f028474b97840a2a5e2b000, type: 3}
+    type: 2
+    seasons: 7
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 52b4ba9be03ae434397320ae089ed21c, type: 3}
+    type: 2
+    seasons: 7
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 9eeaa1330c3e71e47a2a51726afcd7a7, type: 3}
+    type: 2
+    seasons: 7
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 960a594adb7ca0d4bb07faacb584e018, type: 3}
+    type: 2
+    seasons: 7
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 3dbacf3ffb7d5bd4f9b5105a52809a6b, type: 3}
+    type: 2
+    seasons: 3
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 4ea61a082342e4848afeee747bb75405, type: 3}
+    type: 2
+    seasons: 3
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 3a111d6d43bfd3e4c91dbf00787bbaa7, type: 3}
+    type: 2
+    seasons: 3
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 03afce71b394a664e9d76b3e89c92d02, type: 3}
+    type: 2
+    seasons: 3
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: fd9b6129581ae9f4b8698f6aab185064, type: 3}
+    type: 2
+    seasons: 3
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: a57e8e54cf16dac419ebff9cea5b30ac, type: 3}
+    type: 2
+    seasons: 3
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 1a3a880800054d54c89b1b1f5423e389, type: 3}
+    type: 2
+    seasons: 3
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 3326a192c8e0cbe47a54ae66b821bdd1, type: 3}
+    type: 2
+    seasons: 4
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 6dcb684962a73f54d96c3259974cbead, type: 3}
+    type: 2
+    seasons: 4
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 4972e646fc95d56489fe967fda0e763f, type: 3}
+    type: 2
+    seasons: 4
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 306c775303be05145b87e6c14d37d021, type: 3}
+    type: 2
+    seasons: 4
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: adc557c7636ec6849be7f7ca724988f6, type: 3}
+    type: 2
+    seasons: 4
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 07b12ab41705db0488a86967b7437957, type: 3}
+    type: 2
+    seasons: 4
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: e11f7172366bd024f9468896bcf105c0, type: 3}
+    type: 2
+    seasons: 4
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: fb3a0bc0de29bef45a31df238a6cb7a1, type: 3}
+    type: 4
+    seasons: 7
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: e7d5c2376e8d1a4448d583a2dc504db3, type: 3}
+    type: 4
+    seasons: 3
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 987ba3362a3aedd4b9a384a62d9964b8, type: 3}
+    type: 4
+    seasons: 4
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 5fd393105c514c841b7a68a63e33fe9d, type: 3}
+    type: 0
+    seasons: 1
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: e66eee08115522541acc88d33c273caa, type: 3}
+    type: 0
+    seasons: 1
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 8d93ed3dd4e9e214596839fa68129bbf, type: 3}
+    type: 0
+    seasons: 1
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: cda19a2e818c424408c83eb138841256, type: 3}
+    type: 0
+    seasons: 1
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: e64338cdeb843c34bb207ad2537e3a1e, type: 3}
+    type: 0
+    seasons: 1
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 959a798073aae4c46843155a8727ead8, type: 3}
+    type: 0
+    seasons: 2
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: afdc5e50a839fa940b07c2aa97ff59b3, type: 3}
+    type: 0
+    seasons: 2
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: c2f7eafadeede2a468a9b5f01ced756a, type: 3}
+    type: 0
+    seasons: 2
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 720bcddde4efa704eb78f552c17249ad, type: 3}
+    type: 0
+    seasons: 2
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: ee83eb6fba7a6884a86aa52bd9e076f4, type: 3}
+    type: 0
+    seasons: 2
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: a06b998938ef0ef45acf652f638a2986, type: 3}
+    type: 0
+    seasons: 3
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 1e812c4aae0f8ec448bca6df5b3f3987, type: 3}
+    type: 0
+    seasons: 3
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 3869385322fafaa4ea299c4036f4c47f, type: 3}
+    type: 0
+    seasons: 3
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 92b6b0c91adfd3841965f944e3474a7f, type: 3}
+    type: 0
+    seasons: 3
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: fc82364e44688ac4f84962602e851b6b, type: 3}
+    type: 0
+    seasons: 3
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: a499dd5b974f92d4b9093226c3e48c36, type: 3}
+    type: 0
+    seasons: 4
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 2dca28b741a417547a99e1bbe0755cfc, type: 3}
+    type: 0
+    seasons: 4
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 7d46f1469738b2946ac56a73085365f8, type: 3}
+    type: 0
+    seasons: 4
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: c082fc394a0be9b438908c81561d4ae9, type: 3}
+    type: 0
+    seasons: 4
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: cab933f1b49a5114da49e3ccc4333bbd, type: 3}
+    type: 0
+    seasons: 4
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 8e35bf11d53653642b71a0e791289dd7, type: 3}
+    type: 0
+    seasons: 4
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: cd4f6c5c84b8bc447b7b2c25d45ece56, type: 3}
+    type: 0
+    seasons: 4
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: 10864d4282a596047b35f5d3336dcf1e, type: 3}
+    type: 0
+    seasons: 4
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: cd25042ffb59a6c488270199d08ed477, type: 3}
+    type: 0
+    seasons: 4
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: d46af7db87ccdfb4abb8d8a2777dce7c, type: 3}
+    type: 0
+    seasons: 4
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: c1ab7412956552d4280f09fb68ec1699, type: 3}
+    type: 4
+    seasons: 7
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: b42bf3a00920b7e4a9d346ce04f6fbe8, type: 3}
+    type: 4
+    seasons: 3
+    spawnWeight: 1
+  - prefab: {fileID: 919132149155446097, guid: a9eafaa672653f64d8e5cdb987f42bce, type: 3}
+    type: 4
+    seasons: 4
+    spawnWeight: 1
