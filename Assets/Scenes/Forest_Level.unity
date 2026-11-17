@@ -643,6 +643,12 @@ MonoBehaviour:
   maximumTreeDensity: 0.9
   treePositionVariation: 1
   treePathClearance: 1.25
+  treeSpacingBuffer: 0.15
+  treeFootprintScale: 0.45
+  bushSpacingBuffer: 0.1
+  bushFootprintScale: 0.75
+  rockSpacingBuffer: 0.1
+  rockFootprintScale: 0.85
   bushPrefabs: []
   bushDensity: 0.5
   bushNoiseScale: 0.16
@@ -657,6 +663,9 @@ MonoBehaviour:
   groundCoverClusteringStrength: 0.65
   groundCoverPositionVariation: 1.8
   groundCoverHeightRange: {x: 0.35, y: 0.85}
+  groundCoverInstancesPerTile: 5
+  groundCoverPathClearance: 0.25
+  groundCoverLandmarkClearance: 3
   caveCount: 3
   minimumCaveDistance: 7
   minimumAltarCaveDistance: 9

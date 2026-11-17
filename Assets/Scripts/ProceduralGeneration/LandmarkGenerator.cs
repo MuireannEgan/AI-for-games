@@ -4,6 +4,8 @@ using UnityEngine;
 // Handles cave placement, landmark spawning and vegetation clearings.
 public static class LandmarkGenerator
 {
+    private const float CaveRotationOffset = -90f;
+
     public static List<Vector2Int> GenerateCavePositions(ForestGenerationContext c,
         System.Random random,
         Vector2Int altarPosition)
@@ -65,11 +67,29 @@ public static class LandmarkGenerator
         for (int i = 0; i < c.cavePositions.Count; i++)
         {
             Vector3 position = c.GridToWorld(c.cavePositions[i]) + Vector3.up * 1.5f;
+            Quaternion rotation = Quaternion.identity;
+
+            if (i < c.generatedPaths.Count)
+            {
+                List<Vector3> path = c.generatedPaths[i];
+
+                if (path != null && path.Count >= 2)
+                {
+                    Vector3 direction = path[path.Count - 2] - path[path.Count - 1];
+                    direction.y = 0f;
+
+                    if (direction.sqrMagnitude > 0.0001f)
+                    {
+                        rotation = Quaternion.LookRotation(direction);
+                        rotation *= Quaternion.Euler(0f, CaveRotationOffset, 0f);
+                    }
+                }
+            }
 
             GameObject cave = UnityEngine.Object.Instantiate(
                 c.cavePrefab,
                 position,
-                Quaternion.identity,
+                rotation,
                 c.generatedParent
             );
 
@@ -102,5 +122,4 @@ public static class LandmarkGenerator
 
         return false;
     }
-
 }
