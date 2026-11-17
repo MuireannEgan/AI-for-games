@@ -15,7 +15,9 @@ public class GameDirector : MonoBehaviour
     private Transform player;
     private Transform enemy;
 
-    public float encounterDistance = 15f;
+    public float encounterStartDistance = 15f;
+    public float encounterEndDistance = 20f;
+
     public bool encounterActive;
     public float currentEncounterDuration;
     public float lastEncounterDuration;
@@ -89,25 +91,31 @@ public class GameDirector : MonoBehaviour
     {
         if(player == null || enemy == null)
         {
+            if(encounterActive)
+            {
+                EndEncounter();
+            }
+
             return;
         }
 
         float distance = Vector3.Distance(playerPosition, enemyPosition);
-        bool withinRange = distance <= encounterDistance;
 
-        if(withinRange && !encounterActive)
+        if(!encounterActive)
         {
-            StartEncounter();
-        }
-
-        if(encounterActive)
-        {
-            if(withinRange)
+            if(distance <= encounterStartDistance)
             {
-                currentEncounterDuration = Time.time - encounterStartTime;
-            } else
+                StartEncounter();
+            }
+
+        } else
+        {
+            if(distance > encounterEndDistance)
             {
                 EndEncounter();
+            } else
+            {
+                currentEncounterDuration = Time.time - encounterStartTime;
             }
         }
 
@@ -115,8 +123,8 @@ public class GameDirector : MonoBehaviour
         {
             timeSinceLastEncounter = Time.time - encounterEndTime;
         }
-    
-    }
+        
+     }
 
     private void StartEncounter()
     {
@@ -148,9 +156,27 @@ public class GameDirector : MonoBehaviour
 
         if(currentArea == AreaType.Forest)
         {
+            if(encounterActive)
+            {
+                EndEncounter();
+            }
+
             enemy = null;
             enemyPosition = Vector3.zero;
             currentEnemy = EnemyType.None;
+
+            encounterActive = false;
+            totalEncounters = 0;
+            currentEncounterDuration = 0f;
+            lastEncounterDuration = 0f;
+
+            timeSinceLastEncounter = 0f;
+            lastTimeBetweenEncounters = 0f;
+
+            encounterStartTime = 0f;
+            encounterEndTime = 0f;
+
+            hasPreviousEncounter = false;
         }
     }
 
@@ -158,9 +184,6 @@ public class GameDirector : MonoBehaviour
     {
         player = null;
         enemy = null;
-
-        encounterActive = false;
-        currentEncounterDuration = 0f;
 
         UpdatePositions();
     }
