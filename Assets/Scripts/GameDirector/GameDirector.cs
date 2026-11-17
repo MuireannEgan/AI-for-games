@@ -5,13 +5,13 @@ public class GameDirector : MonoBehaviour
 {
     public static GameDirector Instance;
 
-    [SerializeField] private AreaType currentArea;
-    [SerializeField] private Transform player;
+    public AreaType currentArea;
 
-    [SerializeField] private bool hasKey1;
-    [SerializeField] private bool hasKey2;
-    [SerializeField] private bool hasKey3;
+    public Vector3 playerPosition;
+    public Vector3 enemyPosition;
 
+    private Transform player;
+    private Transform enemy;
 
     private void Awake()
     {
@@ -24,51 +24,40 @@ public class GameDirector : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void SetCurrentArea(AreaType area)
+    private void Update()
     {
-        currentArea = area;
+        UpdatePositions();
     }
 
-    public AreaType GetCurrentArea()
+    private void UpdatePositions()
     {
-        return currentArea;
-    }
-
-    public void SetPlayer(Transform newPlayer)
-    {
-        player = newPlayer;
-    }
-
-    public Transform GetPlayer()
-    {
-        return player;
-    }
-
-    public Vector3 GetPlayerPosition()
-    { 
-        return player.position;
-    }
-
-    public void CollectKey(int keyNumber)
-    {
-        switch(keyNumber)
+        if(player == null)
         {
-            case 1:
-                hasKey1 = true;
-                break;
-
-            case 2:
-                hasKey2 = true;
-                break;
-
-            case 3:
-                hasKey3 = true;
-                break;
+            GameObject obj = GameObject.FindGameObjectWithTag("Player");
+            if(obj != null)
+            {
+                player = obj.transform;
+            }
         }
+
+        //if (enemy == null)
+        //{
+        //    GameObject obj =
+        //        GameObject.FindGameObjectWithTag("Enemy");
+        //
+        //    if (obj != null)
+        //        enemy = obj.transform;
+        //}
+
+        if (player != null)
+            playerPosition = player.position;
+
+        if (enemy != null)
+            enemyPosition = enemy.position;
     }
 
-    public bool hasAllKeys()
+    public void SetCurrentArea(AreaType areatype)
     {
-        return hasKey1 && hasKey2 && hasKey3;
+        currentArea = areatype;
     }
 }
