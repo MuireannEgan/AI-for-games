@@ -30,6 +30,18 @@ public class ForestGenerator : MonoBehaviour
 
     private const string NextSeasonKey = "Forest.NextSeasonIndex";
 
+    private static bool hasActiveSession;
+    private static int activeSessionSeed;
+    private static ForestSeason activeSessionSeason;
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    private static void ResetSessionOnLaunch()
+    {
+        hasActiveSession = false;
+        activeSessionSeed = default;
+        activeSessionSeason = default;
+    }
+
     private static readonly ForestSeason[] SeasonCycle =
     {
         ForestSeason.Normal,
@@ -213,16 +225,20 @@ public class ForestGenerator : MonoBehaviour
         return caveObjects[index].transform.position;
     }
 
-    // Generates a new forest and advances the season
-    // only when generation completes successfully.
+    public void StartNewGame()
+    {
+        hasActiveSession = false;
+        GenerateForest();
+    }
+
     public void GenerateForest()
     {
         if (!ValidateSettings())
             return;
 
-        int generationSeed = useRandomSeed
-            ? Guid.NewGuid().GetHashCode()
-            : seed;
+        int generationSeed = hasActiveSession
+            ? activeSessionSeed
+            : (useRandomSeed ? Guid.NewGuid().GetHashCode() : seed);
 
         System.Random random =
             new System.Random(generationSeed);
@@ -233,8 +249,9 @@ public class ForestGenerator : MonoBehaviour
             SeasonCycle.Length - 1
         );
 
-        ForestSeason generationSeason =
-            SeasonCycle[nextSeasonIndex];
+        ForestSeason generationSeason = hasActiveSession
+            ? activeSessionSeason
+            : SeasonCycle[nextSeasonIndex];
 
         Vector2Int altarPosition =
             new Vector2Int(width / 2, height / 2);
@@ -297,23 +314,25 @@ public class ForestGenerator : MonoBehaviour
 
         IsGenerated = true;
 
-        // Save the next season for the next New Game.
-        // This also works across application restarts.
-        int followingSeasonIndex =
-            (nextSeasonIndex + 1) % SeasonCycle.Length;
+        // Only a new game advances the season; dungeon returns do not.
+        if (!hasActiveSession)
+        {
+            activeSessionSeed = generationSeed;
+            activeSessionSeason = generationSeason;
+            hasActiveSession = true;
 
-        PlayerPrefs.SetInt(
-            NextSeasonKey,
-            followingSeasonIndex);
-
-        PlayerPrefs.Save();
+            int followingSeasonIndex =
+                (nextSeasonIndex + 1) % SeasonCycle.Length;
+            PlayerPrefs.SetInt(NextSeasonKey, followingSeasonIndex);
+            PlayerPrefs.Save();
+        }
 
         Debug.Log(
             $"Forest generated. " +
             $"Seed: {CurrentSeed}, " +
             $"Grid: {width}x{height}, " +
             $"Season: {CurrentSeason}, " +
-            $"Next Season: {SeasonCycle[followingSeasonIndex]}, " +
+            $"Next Season: {SeasonCycle[PlayerPrefs.GetInt(NextSeasonKey, 0)]}, " +
             $"Trees: {treeCount}, " +
             $"Bushes: {bushCount}, " +
             $"Rocks: {rockCount}, " +
