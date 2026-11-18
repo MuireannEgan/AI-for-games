@@ -8,6 +8,7 @@ public class GameDirector : MonoBehaviour
 
     public AreaType currentArea;
     public EnemyType currentEnemy;
+    public DirectorState currentState;
 
     public Vector3 playerPosition;
     public Vector3 enemyPosition;
@@ -15,8 +16,8 @@ public class GameDirector : MonoBehaviour
     private Transform player;
     private Transform enemy;
 
-    public float encounterStartDistance = 15f;
-    public float encounterEndDistance = 20f;
+    public float encounterStartDistance = 5f;
+    public float encounterEndDistance = 10f;
 
     public bool encounterActive;
     public float currentEncounterDuration;
@@ -50,6 +51,7 @@ public class GameDirector : MonoBehaviour
     {
         UpdatePositions();
         UpdateEncounter();
+        UpdateDirectorState();
     }
 
     private void UpdatePositions()
@@ -125,6 +127,25 @@ public class GameDirector : MonoBehaviour
         }
         
      }
+
+    private void UpdateDirectorState()
+    {
+        if(currentArea == AreaType.Forest)
+        {
+            currentState = DirectorState.Idle;         
+            return;
+        }
+
+        if(player == null || enemy == null || !encounterActive)
+        {
+            currentState = DirectorState.Searching;
+            return;
+        }
+
+        currentState = DirectorState.Engaged;
+        
+
+    }
 
     private void StartEncounter()
     {

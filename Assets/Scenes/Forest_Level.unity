@@ -149,8 +149,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameDirector
   currentArea: 0
+  currentEnemy: 0
+  currentState: 0
   playerPosition: {x: 0, y: 0, z: 0}
   enemyPosition: {x: 0, y: 0, z: 0}
+  encounterStartDistance: 5
+  encounterEndDistance: 10
+  encounterActive: 0
+  currentEncounterDuration: 0
+  lastEncounterDuration: 0
+  timeSinceLastEncounter: 0
+  lastTimeBetweenEncounters: 0
+  totalEncounters: 0
 --- !u!4 &115723400
 Transform:
   m_ObjectHideFlags: 0
