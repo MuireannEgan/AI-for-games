@@ -153,6 +153,8 @@ MonoBehaviour:
   currentState: 0
   playerPosition: {x: 0, y: 0, z: 0}
   enemyPosition: {x: 0, y: 0, z: 0}
+  soundTrigger: {fileID: 3017190852575791195, guid: 433e2e80ccf908e4ea160ee6ebfbf984, type: 3}
+  smellTrigger: {fileID: 6206095452790273057, guid: e4c158438a74e3e4ea72efa9c808b66b, type: 3}
   encounterStartDistance: 5
   encounterEndDistance: 10
   encounterActive: 0

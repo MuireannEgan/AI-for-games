@@ -16,6 +16,11 @@ public class GameDirector : MonoBehaviour
     private Transform player;
     private Transform enemy;
 
+    public GameObject soundTrigger;
+    public GameObject smellTrigger;
+    private GameObject spawnedTrigger;
+    private bool triggerSpawned;
+
     public float encounterStartDistance = 5f;
     public float encounterEndDistance = 10f;
 
@@ -132,18 +137,45 @@ public class GameDirector : MonoBehaviour
     {
         if(currentArea == AreaType.Forest)
         {
-            currentState = DirectorState.Idle;         
+            currentState = DirectorState.Idle;
             return;
         }
 
         if(player == null || enemy == null || !encounterActive)
         {
             currentState = DirectorState.Searching;
+            if(timeSinceLastEncounter >= 10)
+            {
+                if(currentEnemy == EnemyType.Smell)
+                {
+                    SpawnTrigger(smellTrigger);
+                } else if (currentEnemy == EnemyType.Sound)
+                {
+                    SpawnTrigger(soundTrigger);
+                }
+            }
             return;
         }
 
-        currentState = DirectorState.Engaged;
+        currentState = DirectorState.Active;
         
+    }
+
+    private void SpawnTrigger(GameObject trigger)
+    {
+        if(triggerSpawned)
+        {
+            return;
+        }
+        
+        if(player || trigger == null)
+        {
+            return;
+        }
+
+        spawnedTrigger = Instantiate(trigger, playerPosition, Quaternion.identity);
+
+        triggerSpawned = true;
 
     }
 
@@ -152,6 +184,11 @@ public class GameDirector : MonoBehaviour
         encounterActive = true;
         encounterStartTime = Time.time;
         currentEncounterDuration = 0f;
+
+        if(spawnedTrigger != null)
+        {
+            Destroy(spawnedTrigger);
+        }
 
         if(hasPreviousEncounter)
         {
