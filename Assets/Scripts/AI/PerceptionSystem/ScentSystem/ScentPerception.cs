@@ -10,7 +10,7 @@ public class ScentPerception : MonsterPerception{
 
     private void Awake(){
         if(trailManager == null){
-            trailManager = FindFirstObjectByType<ScentTrailManager>();
+            trailManager = FindAnyObjectByType<ScentTrailManager>();
         }
     }
 

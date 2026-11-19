@@ -1,16 +1,43 @@
 
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameDirector : MonoBehaviour
 {
     public static GameDirector Instance;
 
-    [SerializeField] private AreaType currentArea;
-    [SerializeField] private Transform player;
+    public AreaType currentArea;
+    public EnemyType currentEnemy;
+    public DirectorState currentState;
 
-    [SerializeField] private bool hasKey1;
-    [SerializeField] private bool hasKey2;
-    [SerializeField] private bool hasKey3;
+    public Vector3 playerPosition;
+    public Vector3 enemyPosition;
+
+    private Transform player;
+    private Transform enemy;
+
+    public GameObject soundTrigger;
+    public GameObject smellTrigger;
+    private GameObject spawnedTrigger;
+    private bool triggerSpawned;
+
+    public float encounterStartDistance = 5f;
+    public float encounterEndDistance = 10f;
+
+    public bool encounterActive;
+    public float currentEncounterDuration;
+    public float lastEncounterDuration;
+
+    public float timeSinceLastEncounter;
+    public float lastTimeBetweenEncounters;
+
+    public int totalEncounters;
+
+    private float encounterStartTime;
+    private float encounterEndTime;
+
+    private bool hasPreviousEncounter;
+
 
 
     private void Awake()
@@ -21,54 +48,211 @@ public class GameDirector : MonoBehaviour
             return;
         }
         Instance = this;
+        SceneManager.sceneLoaded += OnSceneLoaded;
         DontDestroyOnLoad(gameObject);
     }
 
-    public void SetCurrentArea(AreaType area)
+    private void Update()
     {
-        currentArea = area;
+        UpdatePositions();
+        UpdateEncounter();
+        UpdateDirectorState();
     }
 
-    public AreaType GetCurrentArea()
+    private void UpdatePositions()
     {
-        return currentArea;
-    }
-
-    public void SetPlayer(Transform newPlayer)
-    {
-        player = newPlayer;
-    }
-
-    public Transform GetPlayer()
-    {
-        return player;
-    }
-
-    public Vector3 GetPlayerPosition()
-    { 
-        return player.position;
-    }
-
-    public void CollectKey(int keyNumber)
-    {
-        switch(keyNumber)
+        if(player == null)
         {
-            case 1:
-                hasKey1 = true;
-                break;
+            GameObject obj = GameObject.FindGameObjectWithTag("Player");
+            if(obj != null)
+            {
+                player = obj.transform;
+            }
+        }
 
-            case 2:
-                hasKey2 = true;
-                break;
+        if (currentArea == AreaType.Cave && enemy == null)
+        {
+            GameObject obj =
+                GameObject.FindGameObjectWithTag("Enemy");
+        
+            if (obj != null)
+            {
+                enemy = obj.transform;
+                EnemyIdentifier identity = enemy.GetComponent<EnemyIdentifier>();
+                if(identity != null)
+                {
+                    currentEnemy = identity.enemyType;
+                }
+            }
+                
+        }
 
-            case 3:
-                hasKey3 = true;
-                break;
+        if (player != null)
+            playerPosition = player.position;
+
+        if (enemy != null)
+            enemyPosition = enemy.position;
+    }
+
+    private void UpdateEncounter()
+    {
+        if(player == null || enemy == null)
+        {
+            if(encounterActive)
+            {
+                EndEncounter();
+            }
+
+            return;
+        }
+
+        float distance = Vector3.Distance(playerPosition, enemyPosition);
+
+        if(!encounterActive)
+        {
+            if(distance <= encounterStartDistance)
+            {
+                StartEncounter();
+            }
+
+        } else
+        {
+            if(distance > encounterEndDistance)
+            {
+                EndEncounter();
+            } else
+            {
+                currentEncounterDuration = Time.time - encounterStartTime;
+            }
+        }
+
+        if(!encounterActive && hasPreviousEncounter)
+        {
+            timeSinceLastEncounter = Time.time - encounterEndTime;
+        }
+        
+     }
+
+    private void UpdateDirectorState()
+    {
+        if(currentArea == AreaType.Forest)
+        {
+            currentState = DirectorState.Idle;
+            return;
+        }
+
+        if(player == null || enemy == null || !encounterActive)
+        {
+            currentState = DirectorState.Searching;
+            if(timeSinceLastEncounter >= 10)
+            {
+                if(currentEnemy == EnemyType.Smell)
+                {
+                    SpawnTrigger(smellTrigger);
+                } else if (currentEnemy == EnemyType.Sound)
+                {
+                    SpawnTrigger(soundTrigger);
+                }
+            }
+            return;
+        }
+
+        currentState = DirectorState.Active;
+        
+    }
+
+    private void SpawnTrigger(GameObject trigger)
+    {
+        if(triggerSpawned)
+        {
+            return;
+        }
+        
+        if(player || trigger == null)
+        {
+            return;
+        }
+
+        spawnedTrigger = Instantiate(trigger, playerPosition, Quaternion.identity);
+
+        triggerSpawned = true;
+
+    }
+
+    private void StartEncounter()
+    {
+        encounterActive = true;
+        encounterStartTime = Time.time;
+        currentEncounterDuration = 0f;
+
+        if(spawnedTrigger != null)
+        {
+            Destroy(spawnedTrigger);
+        }
+
+        if(hasPreviousEncounter)
+        {
+            lastTimeBetweenEncounters = Time.time - encounterEndTime;
+        }
+
+        totalEncounters++;
+    }
+
+    private void EndEncounter()
+    {
+        encounterActive = false;
+        lastEncounterDuration = currentEncounterDuration;
+        encounterEndTime = Time.time;
+        currentEncounterDuration = 0f;
+        timeSinceLastEncounter = 0f;
+        hasPreviousEncounter = true;
+    }
+
+    public void SetCurrentArea(AreaType areatype)
+    {
+        currentArea = areatype;
+
+        if(currentArea == AreaType.Forest)
+        {
+            if(encounterActive)
+            {
+                EndEncounter();
+            }
+
+            enemy = null;
+            enemyPosition = Vector3.zero;
+            currentEnemy = EnemyType.None;
+
+            encounterActive = false;
+            totalEncounters = 0;
+            currentEncounterDuration = 0f;
+            lastEncounterDuration = 0f;
+
+            timeSinceLastEncounter = 0f;
+            lastTimeBetweenEncounters = 0f;
+
+            encounterStartTime = 0f;
+            encounterEndTime = 0f;
+
+            hasPreviousEncounter = false;
         }
     }
 
-    public bool hasAllKeys()
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        return hasKey1 && hasKey2 && hasKey3;
+        player = null;
+        enemy = null;
+
+        UpdatePositions();
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+
+        if(Instance == this)
+        {
+            Instance = null;
+        }
     }
 }

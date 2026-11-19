@@ -16,7 +16,7 @@ public class ScentEmitter : MonoBehaviour{
 
     private void Awake(){
         if(trailManager == null){
-            trailManager = FindFirstObjectByType<ScentTrailManager>();
+            trailManager = FindAnyObjectByType<ScentTrailManager>();
         }
     }
 

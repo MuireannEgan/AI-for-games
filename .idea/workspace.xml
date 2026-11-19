@@ -4,7 +4,9 @@
     <list default="true" id="a9dfef3d-afae-4b27-ab83-a7b54a20e703" name="Changes" comment="base AI + better organisation">
       <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI/MovementSystem/MonsterMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AI/MovementSystem/MonsterMovement.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI/PerceptionSystem/ScentSystem/ScentPerception.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AI/PerceptionSystem/ScentSystem/ScentPerception.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI/ScentSystem/ScentEmitter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AI/ScentSystem/ScentEmitter.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
