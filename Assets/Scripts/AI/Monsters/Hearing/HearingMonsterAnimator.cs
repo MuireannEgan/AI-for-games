@@ -24,6 +24,12 @@ public class HearingMonsterAnimator : MonoBehaviour
     [SerializeField] private float minPlaybackSpeed = 0.65f;
     [SerializeField] private float maxPlaybackSpeed = 2f;
 
+    [Header("Shambler Actions")]
+    [SerializeField] private string screamTrigger = "Scream";
+    [SerializeField] private string attackTrigger = "Attack";
+    [SerializeField] private AudioSource screamAudioSource;
+    [SerializeField] private AudioClip screamClip;
+
     private static readonly int SpeedHash =
         Animator.StringToHash("Speed");
 
@@ -72,8 +78,6 @@ public class HearingMonsterAnimator : MonoBehaviour
         Vector3 displacement =
             transform.position - previousPosition;
 
-        // Ignore vertical movement when calculating
-        // walking and running speed.
         displacement.y = 0f;
 
         float actualSpeed =
@@ -140,6 +144,18 @@ public class HearingMonsterAnimator : MonoBehaviour
             minPlaybackSpeed,
             maxPlaybackSpeed
         );
+    }
+
+    public void PlayScream()
+    {
+        animator.SetTrigger(screamTrigger);
+        if (screamAudioSource != null && screamClip != null)
+            screamAudioSource.PlayOneShot(screamClip);
+    }
+
+    public void PlayAttack()
+    {
+        animator.SetTrigger(attackTrigger);
     }
 
     private void OnDisable()

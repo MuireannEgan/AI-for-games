@@ -34,3 +34,30 @@
 - **Asset pack:** [First Person + Third Person | Character Controllers](https://assetstore.unity.com/packages/3d/characters/first-person-third-person-character-controllers-196526)
 - **Licence:** Unity Companion License
 - **Usage:** First-person player controller, including movement, camera controls, input handling and Cinemachine integration.
+
+## bitkiln — PSX Horror Monsters Free Sampler
+
+- **Creator:** bitkiln
+- **Asset pack:** [PSX Horror Monsters Free Sampler](https://bitkiln.itch.io/psx-horror-monsters-free-sampler)
+- **Licence:** Creator's custom free-use terms; permitted for personal and commercial projects. Credit appreciated but not required.
+- **Usage:** Shambler monster character model, rig and animations for the hearing-based cave enemy.
+- **Modifications:** Integrated the Shambler with custom hearing perception, movement, encounter/attack control and Unity Animator transitions, including scream and attack behaviour.
+- **Licence conditions:** Editing and adaptation are permitted. Resale or redistribution of the standalone assets is prohibited.
+
+## EstudioCoati — Demonic_Screech_01
+
+- **Creator:** EstudioCoati
+- **Sound effect:** [Demonic_Screech_01](https://pixabay.com/sound-effects/horror-demonic-screech-01-502919/)
+- **Source:** Pixabay
+- **Licence:** Pixabay Content License; attribution not required.
+- **Intended usage:** Shambler alert/scream sound when transitioning into pursuit.
+- **Modifications:** Selected and trimmed for synchronisation with the scream animation; Unity playback integration pending verification.
+
+## zerokingfull (Freesound) — Monster Roar 02
+
+- **Creator:** zerokingfull (Freesound); distributed on Pixabay through freesound_community.
+- **Sound effect:** [Monster Roar 02](https://pixabay.com/sound-effects/horror-monster-roar-02-102957/)
+- **Source:** Pixabay
+- **Licence:** Pixabay Content License; attribution not required.
+- **Intended usage:** Shambler's heavy attack vocalisation.
+- **Modifications:** Selected and trimmed for synchronisation with the attack animation; Unity playback integration pending verification.

@@ -13,11 +13,23 @@ public class HearingNoiseEmitter : MonoBehaviour
     [Min(0f)] public float walkingNoiseRadius = 7f;
     [Min(0f)] public float runningNoiseRadius = 13f;
 
+    [Header("Jump and Landing")]
+    [SerializeField] private CharacterController characterController;
+    [Min(0f)] public float jumpNoiseRadius = 10f;
+    [Min(0f)] public float landingNoiseRadius = 15f;
+    [Min(0f)] public float minimumAirTime = 0.12f;
+    [Min(0f)] public float takeoffVerticalSpeed = 0.5f;
+
+    private bool wasGrounded;
+    private float airStartTime;
     private Vector3 previousPosition;
     private float nextFootstepTime;
 
     private void OnEnable()
     {
+        if (characterController == null)
+            characterController = GetComponent<CharacterController>();
+        wasGrounded = characterController != null && characterController.isGrounded;
         previousPosition = transform.position;
         nextFootstepTime = Time.time;
     }
@@ -28,6 +40,23 @@ public class HearingNoiseEmitter : MonoBehaviour
             return;
 
         Vector3 displacement = transform.position - previousPosition;
+        float verticalSpeed = displacement.y / Time.deltaTime;
+        bool grounded = characterController != null && characterController.isGrounded;
+        if (characterController != null)
+        {
+            if (wasGrounded && !grounded)
+            {
+                airStartTime = Time.time;
+                if (verticalSpeed >= takeoffVerticalSpeed)
+                    EmitNoise(jumpNoiseRadius);
+            }
+            else if (!wasGrounded && grounded)
+            {
+                if (Time.time - airStartTime >= minimumAirTime)
+                    EmitNoise(landingNoiseRadius);
+            }
+            wasGrounded = grounded;
+        }
         displacement.y = 0f;
         previousPosition = transform.position;
 

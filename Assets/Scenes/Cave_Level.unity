@@ -14980,8 +14980,8 @@ GameObject:
   - component: {fileID: 1653745000}
   - component: {fileID: 1653744999}
   - component: {fileID: 1653744998}
-  - component: {fileID: 1653744997}
   - component: {fileID: 1653745004}
+  - component: {fileID: 1653745005}
   m_Layer: 0
   m_Name: HearingMonster
   m_TagString: Untagged
@@ -15005,28 +15005,6 @@ Transform:
   - {fileID: 960436645}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!195 &1653744997
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1653744995}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!136 &1653744998
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -15112,7 +15090,26 @@ MonoBehaviour:
   chaseSpeed: 1.5
   searchSpeed: 0.6
   returnSpeed: 0.8
+  gridWidth: 50
+  gridDepth: 50
+  cellSize: 1
+  raycastHeight: 20
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 1
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 0
+  charachterHeight: 1.8
+  charachterRadius: 0.3
+  maxStepHeight: 0.5
+  maxSlopeAngle: 50
+  rotationSpeed: 360
+  waypointReachDistance: 0.15
+  stoppingDistance: 0.5
+  repathDistance: 1
   patrolPoints: []
+  showGridGizmos: 0
 --- !u!114 &1653745003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15125,9 +15122,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb6223c4b863d174990cbbe5fac5d20e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MonsterAI
-  perception: {fileID: 0}
-  decisionMaker: {fileID: 0}
-  movement: {fileID: 0}
+  perception: {fileID: 1653745001}
+  decisionMaker: {fileID: 1653745000}
+  movement: {fileID: 1653745002}
   memory:
     hasLKP: 0
     LKP: {x: 0, y: 0, z: 0}
@@ -15160,6 +15157,32 @@ MonoBehaviour:
   referenceRunSpeed: 1.45
   minPlaybackSpeed: 0.65
   maxPlaybackSpeed: 2
+  screamTrigger: Scream
+  attackTrigger: Attack
+  screamAudioSource: {fileID: 0}
+  screamClip: {fileID: 0}
+--- !u!114 &1653745005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1653744995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c09b0afb7c6d3f847ac93769858fe95d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HearingMonsterEncounter
+  monsterAI: {fileID: 1653745003}
+  movement: {fileID: 1653745002}
+  monsterAnimator: {fileID: 1653745004}
+  player: {fileID: 1777486729}
+  attackRange: 1.1
+  attackDuration: 1.1
+  attackCooldown: 1.5
+  recentSoundWindow: 2
+  screamDuration: 1.4
+  screamCooldown: 5
 --- !u!1001 &1654877967
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15258,70 +15281,6 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
---- !u!1 &1658112237
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1658112239}
-  - component: {fileID: 1658112238}
-  m_Layer: 0
-  m_Name: TemporaryNavMesh
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1658112238
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1658112237}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.AI.Navigation::Unity.AI.Navigation.NavMeshSurface
-  m_SerializedVersion: 0
-  m_AgentTypeID: 0
-  m_CollectObjects: 0
-  m_Size: {x: 10, y: 10, z: 10}
-  m_Center: {x: 0, y: 2, z: 0}
-  m_LayerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_UseGeometry: 1
-  m_DefaultArea: 0
-  m_GenerateLinks: 0
-  m_IgnoreNavMeshAgent: 1
-  m_IgnoreNavMeshObstacle: 1
-  m_OverrideTileSize: 0
-  m_TileSize: 256
-  m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
-  m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: bd02cccfb078dcc4cbf51c87b522b9ef, type: 2}
-  m_BuildHeightMesh: 0
---- !u!4 &1658112239
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1658112237}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1659975198
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16893,6 +16852,11 @@ MonoBehaviour:
   runningStepInterval: 0.3
   walkingNoiseRadius: 7
   runningNoiseRadius: 13
+  characterController: {fileID: 0}
+  jumpNoiseRadius: 10
+  landingNoiseRadius: 15
+  minimumAirTime: 0.12
+  takeoffVerticalSpeed: 0.5
 --- !u!850595691 &1789605329
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -20222,5 +20186,4 @@ SceneRoots:
   - {fileID: 694951642}
   - {fileID: 1150883464}
   - {fileID: 1653744996}
-  - {fileID: 1658112239}
   - {fileID: 869199452}
