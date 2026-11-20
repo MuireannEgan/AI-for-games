@@ -29,6 +29,7 @@ public class HearingMonsterAnimator : MonoBehaviour
     [SerializeField] private string attackTrigger = "Attack";
     [SerializeField] private AudioSource screamAudioSource;
     [SerializeField] private AudioClip screamClip;
+    [SerializeField] private AudioClip attackClip;
 
     private static readonly int SpeedHash =
         Animator.StringToHash("Speed");
@@ -156,6 +157,8 @@ public class HearingMonsterAnimator : MonoBehaviour
     public void PlayAttack()
     {
         animator.SetTrigger(attackTrigger);
+        if (screamAudioSource != null && attackClip != null)
+            screamAudioSource.PlayOneShot(attackClip);
     }
 
     private void OnDisable()
