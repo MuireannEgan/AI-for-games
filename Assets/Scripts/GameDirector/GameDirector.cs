@@ -19,7 +19,7 @@ public class GameDirector : MonoBehaviour
     public GameObject soundTrigger;
     public GameObject smellTrigger;
     private GameObject spawnedTrigger;
-    private bool triggerSpawned;
+    private bool triggerSpawned = false;
 
     public float encounterStartDistance = 5f;
     public float encounterEndDistance = 10f;
@@ -144,14 +144,14 @@ public class GameDirector : MonoBehaviour
         if(player == null || enemy == null || !encounterActive)
         {
             currentState = DirectorState.Searching;
-            if(timeSinceLastEncounter >= 10)
+            if(hasPreviousEncounter && timeSinceLastEncounter >= 10f)
             {
-                if(currentEnemy == EnemyType.Smell)
-                {
-                    SpawnTrigger(smellTrigger);
-                } else if (currentEnemy == EnemyType.Sound)
+                if(currentEnemy == EnemyType.Sound)
                 {
                     SpawnTrigger(soundTrigger);
+                } else if(currentEnemy == EnemyType.Smell)
+                {
+                    SpawnTrigger(smellTrigger);
                 }
             }
             return;
@@ -168,12 +168,13 @@ public class GameDirector : MonoBehaviour
             return;
         }
         
-        if(player || trigger == null)
+        if(player == null || trigger == null)
         {
             return;
         }
 
         spawnedTrigger = Instantiate(trigger, playerPosition, Quaternion.identity);
+        Debug.Log("trigger spawned");
 
         triggerSpawned = true;
 
@@ -189,6 +190,9 @@ public class GameDirector : MonoBehaviour
         {
             Destroy(spawnedTrigger);
         }
+
+        spawnedTrigger = null;
+        triggerSpawned = false;
 
         if(hasPreviousEncounter)
         {
