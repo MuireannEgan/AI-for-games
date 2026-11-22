@@ -4,7 +4,7 @@ public class AreaIdentifier : MonoBehaviour
 {
     [SerializeField] private AreaType areaType;
 
-    private void Start()
+    private void Awake()
     {
         GameDirector.Instance.SetCurrentArea(areaType);
     }

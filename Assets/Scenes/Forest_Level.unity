@@ -129,6 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 115723400}
   - component: {fileID: 115723399}
+  - component: {fileID: 115723401}
   m_Layer: 0
   m_Name: GameDirector
   m_TagString: Untagged
@@ -178,6 +179,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &115723401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 115723398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 085cecb94a209ed429b0c6d7179b84da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::KeyManager
+  keySpawns:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  selectedKeySpawn: {fileID: 0}
+  keyPrefab: {fileID: 7757866439814916396, guid: 73ee75f912deefd4bb851272f329267c, type: 3}
 --- !u!1001 &125355906
 PrefabInstance:
   m_ObjectHideFlags: 0

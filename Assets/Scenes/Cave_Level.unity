@@ -3045,7 +3045,7 @@ GameObject:
   - component: {fileID: 337451198}
   m_Layer: 0
   m_Name: KeySpawn_01
-  m_TagString: Untagged
+  m_TagString: KeySpawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3446,7 +3446,7 @@ Transform:
   m_GameObject: {fileID: 370955713}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.21, y: 1.525, z: -24.938}
+  m_LocalPosition: {x: 0.21, y: 1.525, z: -23}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8486,7 +8486,7 @@ GameObject:
   - component: {fileID: 913110046}
   m_Layer: 0
   m_Name: KeySpawn_02
-  m_TagString: Untagged
+  m_TagString: KeySpawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10247,7 +10247,7 @@ GameObject:
   - component: {fileID: 1145522066}
   m_Layer: 0
   m_Name: KeySpawn_03
-  m_TagString: Untagged
+  m_TagString: KeySpawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16482,7 +16482,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8997996947095583982, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -24.938
+      value: -23
       objectReference: {fileID: 0}
     - target: {fileID: 8997996947095583982, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
       propertyPath: m_LocalRotation.w
