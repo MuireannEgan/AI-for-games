@@ -156,13 +156,11 @@ MonoBehaviour:
   enemyPosition: {x: 0, y: 0, z: 0}
   soundTrigger: {fileID: 3017190852575791195, guid: 433e2e80ccf908e4ea160ee6ebfbf984, type: 3}
   smellTrigger: {fileID: 6206095452790273057, guid: e4c158438a74e3e4ea72efa9c808b66b, type: 3}
+  sightTrigger: {fileID: 4945884969371535825, guid: f2acc182b1ae5244785efd18a695b863, type: 3}
   encounterStartDistance: 5
   encounterEndDistance: 10
   encounterActive: 0
-  currentEncounterDuration: 0
-  lastEncounterDuration: 0
   timeSinceLastEncounter: 0
-  lastTimeBetweenEncounters: 0
   totalEncounters: 0
 --- !u!4 &115723400
 Transform:
@@ -196,7 +194,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  ExitBlock: {fileID: 0}
+  exitBlock: {fileID: 0}
   selectedKeySpawn: {fileID: 0}
   keyPrefab: {fileID: 7757866439814916396, guid: 73ee75f912deefd4bb851272f329267c, type: 3}
 --- !u!1001 &125355906

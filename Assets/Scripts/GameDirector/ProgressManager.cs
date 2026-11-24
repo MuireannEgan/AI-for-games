@@ -45,7 +45,7 @@ public class ProgressManager : MonoBehaviour
                 break;
 
             case ProgressState.KeyCollected:
-                Destroy(exitBlock);
+                UnlockDoor();
                 break;
 
         }
@@ -93,7 +93,7 @@ public class ProgressManager : MonoBehaviour
 
     private void UnlockDoor()
     {
-
+        Destroy(exitBlock);
     }
 
     private void OnDestroy()
