@@ -26,18 +26,13 @@ public class GameDirector : MonoBehaviour
     public float encounterEndDistance = 10f;
 
     public bool encounterActive;
-    private float currentEncounterDuration;
-    private float lastEncounterDuration;
 
+    private float encounterEndTime;
     public float timeSinceLastEncounter;
-    private float lastTimeBetweenEncounters;
 
     public int totalEncounters;
 
-    private float encounterStartTime;
-    private float encounterEndTime;
-
-    private bool hasPreviousEncounter;
+    private bool hasPreviousEncounter; 
 
 
 
@@ -121,10 +116,7 @@ public class GameDirector : MonoBehaviour
             if(distance > encounterEndDistance)
             {
                 EndEncounter();
-            } else
-            {
-                currentEncounterDuration = Time.time - encounterStartTime;
-            }
+            } 
         }
 
         if(!encounterActive && hasPreviousEncounter)
@@ -228,8 +220,6 @@ public class GameDirector : MonoBehaviour
     private void StartEncounter()
     {
         encounterActive = true;
-        encounterStartTime = Time.time;
-        currentEncounterDuration = 0f;
 
         ChangeState(DirectorState.Active);
 
@@ -241,20 +231,13 @@ public class GameDirector : MonoBehaviour
         spawnedTrigger = null;
         triggerSpawned = false;
 
-        if(hasPreviousEncounter)
-        {
-            lastTimeBetweenEncounters = Time.time - encounterEndTime;
-        }
-
         totalEncounters++;
     }
 
     private void EndEncounter()
     {
         encounterActive = false;
-        lastEncounterDuration = currentEncounterDuration;
         encounterEndTime = Time.time;
-        currentEncounterDuration = 0f;
         timeSinceLastEncounter = 0f;
         hasPreviousEncounter = true;
 
@@ -278,13 +261,9 @@ public class GameDirector : MonoBehaviour
 
             encounterActive = false;
             totalEncounters = 0;
-            currentEncounterDuration = 0f;
-            lastEncounterDuration = 0f;
 
             timeSinceLastEncounter = 0f;
-            lastTimeBetweenEncounters = 0f;
 
-            encounterStartTime = 0f;
             encounterEndTime = 0f;
 
             hasPreviousEncounter = false;
