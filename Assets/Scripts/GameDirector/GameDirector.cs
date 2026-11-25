@@ -6,38 +6,43 @@ public class GameDirector : MonoBehaviour
 {
     public static GameDirector Instance;
 
+    //State Trackers
     public AreaType currentArea;
     public EnemyType currentEnemy;
     public DirectorState currentState;
 
+    //Character positions
     public Vector3 playerPosition;
     public Vector3 enemyPosition;
 
+    //Link to character gameobjects
     private Transform player;
     private Transform enemy;
 
+    //Trigger variables
     public GameObject soundTrigger;
     public GameObject smellTrigger;
     public GameObject sightTrigger;
     private GameObject spawnedTrigger;
     private bool triggerSpawned = false;
 
+    //encounter active range
     public float encounterStartDistance = 5f;
     public float encounterEndDistance = 10f;
-
     public bool encounterActive;
 
+    //timer
     private float encounterEndTime;
     public float timeSinceLastEncounter;
 
     public int totalEncounters;
-
     private bool hasPreviousEncounter; 
 
 
 
     private void Awake()
     {
+        //Preserves game director across scenes
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -50,8 +55,11 @@ public class GameDirector : MonoBehaviour
 
     private void Update()
     {
+        //Find player and enemy positions
         UpdatePositions();
+        //check if within encounter range
         UpdateEncounter();
+        //check if conditions are met to decide trigger spawns
         UpdateDirectorState();
     }
 
@@ -244,6 +252,7 @@ public class GameDirector : MonoBehaviour
         ChangeState(DirectorState.Searching);
     }
 
+    //unassign variables in hub, start into state switch logic if not
     public void SetCurrentArea(AreaType areatype)
     {
         currentArea = areatype;

@@ -5,12 +5,16 @@ public class ProgressManager : MonoBehaviour
 {
     public static ProgressManager Instance;
 
+    //state
     public ProgressState progress;
     
+    //key variables
     public Transform[] keySpawns = new Transform[3];
-    public GameObject exitBlock;
     public Transform selectedKeySpawn;
     public GameObject keyPrefab;
+
+    //door object
+    public GameObject exitBlock;
 
     private void Awake()
     {
@@ -53,6 +57,7 @@ public class ProgressManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        //reset variables for new scene
         keySpawns[0] = null;
         keySpawns[1] = null;
         keySpawns[2] = null;
