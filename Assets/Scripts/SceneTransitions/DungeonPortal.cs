@@ -7,30 +7,11 @@ public class DungeonPortal : MonoBehaviour
     [Header("Scene Transition")]
     [SerializeField] private string destinationScene = "Forest_Level";
 
-    [Header("Return Spawn")]
-    [SerializeField, Min(0.5f)]
-    private float returnClearance = 1.5f;
-
     private bool isTransitioning;
-    private BoxCollider portalCollider;
-
-    private static bool hasReturnSpawn;
-    private static Vector3 returnPosition;
-    private static Quaternion returnRotation;
-
-    [RuntimeInitializeOnLoadMethod(
-        RuntimeInitializeLoadType.SubsystemRegistration)]
-    public static void ClearReturnSpawn()
-    {
-        hasReturnSpawn = false;
-        returnPosition = Vector3.zero;
-        returnRotation = Quaternion.identity;
-    }
 
     private void Awake()
     {
-        portalCollider = GetComponent<BoxCollider>();
-        portalCollider.isTrigger = true;
+        GetComponent<BoxCollider>().isTrigger = true;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -52,80 +33,21 @@ public class DungeonPortal : MonoBehaviour
             return;
         }
 
-        if (SceneManager.GetActiveScene().name == "Forest_Level")
+        ScreenTransition transition = ScreenTransition.Instance;
+        if (transition == null || transition.IsBusy)
+            return;
+
+        bool leavingCave = SceneManager.GetActiveScene().name == "Cave_Level" &&
+                           destinationScene == "Forest_Level";
+
+        if (leavingCave && ProgressManager.Instance != null &&
+            ProgressManager.Instance.progress == ProgressState.KeyCollected)
         {
-            SaveReturnSpawn(player);
+            isTransitioning = transition.TryShowEnding(true);
         }
-
-        isTransitioning = true;
-        SceneManager.LoadScene(destinationScene);
-    }
-
-    private void SaveReturnSpawn(CharacterController player)
-    {
-        Vector3 outward = transform.right;
-        outward.y = 0f;
-        outward.Normalize();
-
-        Vector3 portalCentre =
-            transform.TransformPoint(portalCollider.center);
-
-        float halfWidth =
-            portalCollider.size.x * 0.5f *
-            Mathf.Abs(transform.lossyScale.x);
-
-        returnPosition = portalCentre +
-            outward * (halfWidth + returnClearance + player.radius);
-
-        returnPosition.y = player.transform.position.y;
-
-        returnRotation = Quaternion.LookRotation(outward);
-
-        hasReturnSpawn = true;
-
-        Debug.Log(
-            $"DungeonPortal: Saved return position {returnPosition}");
-    }
-
-    public static bool TryRestoreReturnSpawn()
-    {
-        if (!hasReturnSpawn)
-            return false;
-
-        GameObject player =
-            GameObject.FindGameObjectWithTag("Player");
-
-        if (player == null)
+        else
         {
-            Debug.LogWarning(
-                "DungeonPortal: Unable to restore return spawn. " +
-                "Player not found.");
-            return false;
+            isTransitioning = transition.TryLoadScene(destinationScene);
         }
-
-        CharacterController controller =
-            player.GetComponent<CharacterController>();
-
-        bool wasEnabled =
-            controller != null && controller.enabled;
-
-        if (wasEnabled)
-            controller.enabled = false;
-
-        player.transform.SetPositionAndRotation(
-            returnPosition,
-            returnRotation);
-
-        Physics.SyncTransforms();
-
-        if (wasEnabled)
-            controller.enabled = true;
-
-        Debug.Log(
-            $"DungeonPortal: Restored player to {returnPosition}");
-
-        ClearReturnSpawn();
-
-        return true;
     }
 }

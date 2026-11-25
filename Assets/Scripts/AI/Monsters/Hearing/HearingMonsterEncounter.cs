@@ -15,6 +15,7 @@ public class HearingMonsterEncounter : MonoBehaviour
     [Min(0.1f)] [SerializeField] private float attackDuration = 1.1f;
     [Min(0f)] [SerializeField] private float attackCooldown = 1.5f;
     [Min(0f)] [SerializeField] private float recentSoundWindow = 2f;
+    [Min(0.1f)] [SerializeField] private float attackVerticalTolerance = 1.25f;
 
     [Header("Scream")]
     [Min(0.1f)] [SerializeField] private float screamDuration = 1.4f;
@@ -44,6 +45,9 @@ public class HearingMonsterEncounter : MonoBehaviour
         if (performingAction || monsterAI == null || movement == null)
             return;
 
+        if (ScreenTransition.Instance != null && ScreenTransition.Instance.IsBusy)
+            return;
+
         MonsterState state = monsterAI.currentState;
         bool engaged = state == MonsterState.Chase || state == MonsterState.Investigate;
         bool recentSound = monsterAI.memory.hasLKP &&
@@ -51,9 +55,7 @@ public class HearingMonsterEncounter : MonoBehaviour
 
         if (engaged && recentSound && player != null && Time.time >= nextAttackTime)
         {
-            Vector3 direction = player.position - transform.position;
-            direction.y = 0f;
-            if (direction.magnitude <= attackRange)
+            if (IsPlayerInAttackRange())
             {
                 StartAction(Attack());
                 return;
@@ -68,6 +70,19 @@ public class HearingMonsterEncounter : MonoBehaviour
         }
 
         previousState = state;
+    }
+
+    private bool IsPlayerInAttackRange()
+    {
+        if (player == null)
+            return false;
+
+        Vector3 direction = player.position - transform.position;
+        if (Mathf.Abs(direction.y) > attackVerticalTolerance)
+            return false;
+
+        direction.y = 0f;
+        return direction.magnitude <= attackRange;
     }
 
     private void StartAction(IEnumerator action)
@@ -93,6 +108,14 @@ public class HearingMonsterEncounter : MonoBehaviour
         monsterAI.currentState = MonsterState.Attack;
         if (monsterAnimator != null) monsterAnimator.PlayAttack();
         yield return new WaitForSeconds(attackDuration);
+
+        if (IsPlayerInAttackRange() && ScreenTransition.Instance != null &&
+            ScreenTransition.Instance.TryShowEnding(false))
+        {
+            currentAction = null;
+            yield break;
+        }
+
         monsterAI.currentState = MonsterState.Idle;
         EndAction();
     }

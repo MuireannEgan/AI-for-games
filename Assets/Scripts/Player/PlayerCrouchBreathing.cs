@@ -23,10 +23,10 @@ public class PlayerCrouchBreathing : MonoBehaviour
     [SerializeField] private AudioClip slowBreathingClip;
     [SerializeField] private AudioClip fastBreathingClip;
     [Range(0f, 1f)] [SerializeField] private float breathingVolume = 0.35f;
-    [Min(1f)] [SerializeField] private float crouchBreathingDelay = 10f;
-    [Min(0.1f)] [SerializeField] private float breathingBuildTime = 15f;
-    [Min(0f)] [SerializeField] private float maximumBreathingNoiseRadius = 7f;
-    [Min(0.2f)] [SerializeField] private float breathingNoiseInterval = 2f;
+    [Min(1f)] [SerializeField] private float crouchBreathingDelay = 8f;
+    [Min(0.1f)] [SerializeField] private float breathingBuildTime = 12f;
+    [Min(0f)] [SerializeField] private float maximumBreathingNoiseRadius = 12f;
+    [Min(0.2f)] [SerializeField] private float breathingNoiseInterval = 1.5f;
 
     private float standingHeight;
     private Vector3 standingCenter;
@@ -34,7 +34,6 @@ public class PlayerCrouchBreathing : MonoBehaviour
     private float normalMoveSpeed;
     private float normalSprintSpeed;
     private float crouchTime;
-    private float exertion;
     private float nextBreathNoiseTime;
     private bool crouching;
     private readonly Collider[] clearanceHits = new Collider[24];
@@ -79,7 +78,6 @@ public class PlayerCrouchBreathing : MonoBehaviour
         bool wantsCrouch = Keyboard.current != null &&
             (Keyboard.current.leftCtrlKey.isPressed || Keyboard.current.cKey.isPressed);
 
-        bool wasCrouching = crouching;
         if (wantsCrouch)
             crouching = true;
         else if (crouching && CanStand())
@@ -112,18 +110,14 @@ public class PlayerCrouchBreathing : MonoBehaviour
         crouchTime = crouching ? crouchTime + Time.deltaTime : 0f;
         float crouchStress = Mathf.Clamp01(
             (crouchTime - crouchBreathingDelay) / breathingBuildTime);
-        bool sprinting = !crouching && playerInput != null && playerInput.sprint &&
-            playerInput.move.sqrMagnitude > 0.1f;
-        exertion = Mathf.MoveTowards(exertion, sprinting ? 1f : 0f,
-            Time.deltaTime * (sprinting ? 0.5f : 0.15f));
-        float breathIntensity = Mathf.Max(crouchStress, exertion);
 
-        if (slowBreathingSource != null)
-            slowBreathingSource.volume = Mathf.MoveTowards(slowBreathingSource.volume,
-                breathingVolume * (1f - breathIntensity), Time.deltaTime);
-        if (fastBreathingSource != null)
-            fastBreathingSource.volume = Mathf.MoveTowards(fastBreathingSource.volume,
-                breathingVolume * breathIntensity, Time.deltaTime);
+        float slowVolume = crouching ? breathingVolume * (1f - crouchStress) : 0f;
+        float fastVolume = crouching ? breathingVolume * crouchStress : 0f;
+
+        UpdateBreathingSource(slowBreathingSource, slowVolume);
+        UpdateBreathingSource(fastBreathingSource, fastVolume);
+
+        if (!crouching) nextBreathNoiseTime = 0f;
 
         if (crouching && crouchStress > 0f && noiseEmitter != null &&
             Time.time >= nextBreathNoiseTime)
@@ -160,11 +154,28 @@ public class PlayerCrouchBreathing : MonoBehaviour
         source.playOnAwake = false;
         source.spatialBlend = 0f;
         source.volume = 0f;
-        source.Play();
+        source.Stop();
+    }
+
+    private static void UpdateBreathingSource(AudioSource source, float targetVolume)
+    {
+        if (source == null || source.clip == null) return;
+        if (targetVolume > 0f && !source.isPlaying)
+        {
+            source.volume = 0f;
+            source.Play();
+        }
+
+        source.volume = Mathf.MoveTowards(source.volume, targetVolume, Time.deltaTime);
+        if (targetVolume == 0f && source.volume == 0f && source.isPlaying)
+            source.Stop();
     }
 
     private void OnDisable()
     {
+        crouching = false;
+        crouchTime = 0f;
+        nextBreathNoiseTime = 0f;
         if (characterController != null)
         {
             characterController.height = standingHeight;

@@ -35,7 +35,7 @@ public class ForestGenerator : MonoBehaviour
     private static ForestSeason activeSessionSeason;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-    private static void ResetSessionOnLaunch()
+    public static void ResetSession()
     {
         hasActiveSession = false;
         activeSessionSeed = default;
@@ -226,8 +226,6 @@ public class ForestGenerator : MonoBehaviour
 
     public void StartNewGame()
     {
-        DungeonPortal.ClearReturnSpawn();
-
         hasActiveSession = false;
         GenerateForest();
     }
@@ -348,13 +346,6 @@ public class ForestGenerator : MonoBehaviour
                 $"{caveObjects[i].name}: " +
                 $"{caveObjects[i].transform.position}",
                 caveObjects[i]);
-        }
-
-        Physics.SyncTransforms();
-
-        if (Application.isPlaying)
-        {
-            DungeonPortal.TryRestoreReturnSpawn();
         }
 
         ForestGenerated?.Invoke(this);
