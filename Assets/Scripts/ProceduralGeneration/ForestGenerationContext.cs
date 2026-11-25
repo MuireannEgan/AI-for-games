@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // Holds shared configuration and runtime data for the procedural generators.
-// Inspector settings remain in ForestGenerator to preserve scene references.
+// Inspector settings remain in ForestGenerator to preserve serialized values.
 public sealed class ForestGenerationContext
 {
     public int width, height, caveCount, minimumCaveDistance, minimumAltarCaveDistance,

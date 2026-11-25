@@ -176,7 +176,6 @@ public class ForestGenerator : MonoBehaviour
 
     private Transform generatedParent;
 
-    // Public API for the game director and other systems.
     // References are updated after each generation.
     public IReadOnlyList<Vector2Int> CavePositions =>
         cavePositions;
@@ -227,6 +226,8 @@ public class ForestGenerator : MonoBehaviour
 
     public void StartNewGame()
     {
+        DungeonPortal.ClearReturnSpawn();
+
         hasActiveSession = false;
         GenerateForest();
     }
@@ -347,6 +348,13 @@ public class ForestGenerator : MonoBehaviour
                 $"{caveObjects[i].name}: " +
                 $"{caveObjects[i].transform.position}",
                 caveObjects[i]);
+        }
+
+        Physics.SyncTransforms();
+
+        if (Application.isPlaying)
+        {
+            DungeonPortal.TryRestoreReturnSpawn();
         }
 
         ForestGenerated?.Invoke(this);
@@ -666,7 +674,6 @@ public class ForestGenerator : MonoBehaviour
             return false;
         }
 
-        // All three seasons must have usable tree assets.
         if (assetDatabase != null)
         {
             foreach (ForestSeason season in SeasonCycle)
