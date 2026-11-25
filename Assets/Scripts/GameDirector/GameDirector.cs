@@ -18,25 +18,21 @@ public class GameDirector : MonoBehaviour
 
     public GameObject soundTrigger;
     public GameObject smellTrigger;
+    public GameObject sightTrigger;
     private GameObject spawnedTrigger;
-    private bool triggerSpawned;
+    private bool triggerSpawned = false;
 
     public float encounterStartDistance = 5f;
     public float encounterEndDistance = 10f;
 
     public bool encounterActive;
-    public float currentEncounterDuration;
-    public float lastEncounterDuration;
 
+    private float encounterEndTime;
     public float timeSinceLastEncounter;
-    public float lastTimeBetweenEncounters;
 
     public int totalEncounters;
 
-    private float encounterStartTime;
-    private float encounterEndTime;
-
-    private bool hasPreviousEncounter;
+    private bool hasPreviousEncounter; 
 
 
 
@@ -120,10 +116,7 @@ public class GameDirector : MonoBehaviour
             if(distance > encounterEndDistance)
             {
                 EndEncounter();
-            } else
-            {
-                currentEncounterDuration = Time.time - encounterStartTime;
-            }
+            } 
         }
 
         if(!encounterActive && hasPreviousEncounter)
@@ -137,28 +130,72 @@ public class GameDirector : MonoBehaviour
     {
         if(currentArea == AreaType.Forest)
         {
-            currentState = DirectorState.Idle;
+            ChangeState(DirectorState.Idle);
             return;
         }
 
-        if(player == null || enemy == null || !encounterActive)
+        if(encounterActive)
         {
-            currentState = DirectorState.Searching;
-            if(timeSinceLastEncounter >= 10)
-            {
-                if(currentEnemy == EnemyType.Smell)
-                {
-                    SpawnTrigger(smellTrigger);
-                } else if (currentEnemy == EnemyType.Sound)
-                {
-                    SpawnTrigger(soundTrigger);
-                }
-            }
             return;
         }
 
-        currentState = DirectorState.Active;
         
+        if(hasPreviousEncounter && timeSinceLastEncounter >= 10f)
+        {
+            if(currentEnemy == EnemyType.Sound)
+            {
+                ChangeState(DirectorState.TriggerSound);
+                return;
+            } 
+            else if(currentEnemy == EnemyType.Smell)
+            {
+                ChangeState(DirectorState.TriggerSmell);
+                return;
+            } 
+            else if(currentEnemy == EnemyType.Sight)
+            {
+                ChangeState(DirectorState.TriggerSight);
+                return;
+            }
+        }
+
+    }
+
+    public void ChangeState(DirectorState state)
+    {
+        if(currentState == state)
+        {
+            return;
+        }
+        
+        currentState = state;
+
+        switch(currentState)
+        {
+            case DirectorState.Idle:
+                //No enemy in hub so no action needed
+                break;
+
+            case DirectorState.Active:
+                //Player in encounter so no action needed
+                break;
+
+            case DirectorState.Searching:
+                //Not currently in encounter
+                break;
+
+            case DirectorState.TriggerSound:
+                SpawnTrigger(soundTrigger);
+                break;
+
+            case DirectorState.TriggerSmell:
+                SpawnTrigger(smellTrigger);
+                break;
+
+            case DirectorState.TriggerSight:
+                SpawnTrigger(sightTrigger);
+                break;
+        }
     }
 
     private void SpawnTrigger(GameObject trigger)
@@ -168,12 +205,13 @@ public class GameDirector : MonoBehaviour
             return;
         }
         
-        if(player || trigger == null)
+        if(player == null || trigger == null)
         {
             return;
         }
 
         spawnedTrigger = Instantiate(trigger, playerPosition, Quaternion.identity);
+        Debug.Log("trigger spawned");
 
         triggerSpawned = true;
 
@@ -182,18 +220,16 @@ public class GameDirector : MonoBehaviour
     private void StartEncounter()
     {
         encounterActive = true;
-        encounterStartTime = Time.time;
-        currentEncounterDuration = 0f;
+
+        ChangeState(DirectorState.Active);
 
         if(spawnedTrigger != null)
         {
             Destroy(spawnedTrigger);
         }
 
-        if(hasPreviousEncounter)
-        {
-            lastTimeBetweenEncounters = Time.time - encounterEndTime;
-        }
+        spawnedTrigger = null;
+        triggerSpawned = false;
 
         totalEncounters++;
     }
@@ -201,11 +237,11 @@ public class GameDirector : MonoBehaviour
     private void EndEncounter()
     {
         encounterActive = false;
-        lastEncounterDuration = currentEncounterDuration;
         encounterEndTime = Time.time;
-        currentEncounterDuration = 0f;
         timeSinceLastEncounter = 0f;
         hasPreviousEncounter = true;
+
+        ChangeState(DirectorState.Searching);
     }
 
     public void SetCurrentArea(AreaType areatype)
@@ -225,16 +261,18 @@ public class GameDirector : MonoBehaviour
 
             encounterActive = false;
             totalEncounters = 0;
-            currentEncounterDuration = 0f;
-            lastEncounterDuration = 0f;
 
             timeSinceLastEncounter = 0f;
-            lastTimeBetweenEncounters = 0f;
 
-            encounterStartTime = 0f;
             encounterEndTime = 0f;
 
             hasPreviousEncounter = false;
+
+            ChangeState(DirectorState.Idle);
+        }
+        else
+        {
+            ChangeState(DirectorState.Searching);
         }
     }
 

@@ -129,6 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 115723400}
   - component: {fileID: 115723399}
+  - component: {fileID: 115723401}
   m_Layer: 0
   m_Name: GameDirector
   m_TagString: Untagged
@@ -149,19 +150,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameDirector
   currentArea: 0
-  currentEnemy: 0
+  currentEnemy: 3
   currentState: 0
   playerPosition: {x: 0, y: 0, z: 0}
   enemyPosition: {x: 0, y: 0, z: 0}
   soundTrigger: {fileID: 3017190852575791195, guid: 433e2e80ccf908e4ea160ee6ebfbf984, type: 3}
   smellTrigger: {fileID: 6206095452790273057, guid: e4c158438a74e3e4ea72efa9c808b66b, type: 3}
+  sightTrigger: {fileID: 4945884969371535825, guid: f2acc182b1ae5244785efd18a695b863, type: 3}
   encounterStartDistance: 5
   encounterEndDistance: 10
   encounterActive: 0
-  currentEncounterDuration: 0
-  lastEncounterDuration: 0
   timeSinceLastEncounter: 0
-  lastTimeBetweenEncounters: 0
   totalEncounters: 0
 --- !u!4 &115723400
 Transform:
@@ -178,6 +177,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &115723401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 115723398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 085cecb94a209ed429b0c6d7179b84da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::KeyManager
+  progress: 0
+  keySpawns:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  exitBlock: {fileID: 0}
+  selectedKeySpawn: {fileID: 0}
+  keyPrefab: {fileID: 7757866439814916396, guid: 73ee75f912deefd4bb851272f329267c, type: 3}
 --- !u!1001 &125355906
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -569,6 +588,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5393215578589016642, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 8616685848737228371, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
       propertyPath: RotationSpeed
       value: 2
