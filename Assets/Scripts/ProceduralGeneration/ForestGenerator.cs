@@ -343,6 +343,10 @@ public class ForestGenerator : MonoBehaviour
 
         for (int i = 0; i < caveObjects.Count; i++)
         {
+            DungeonPortal portal = caveObjects[i].GetComponentInChildren<DungeonPortal>(true);
+            if(portal != null){
+                portal.setCaveID(i+1);
+            }
             Debug.Log(
                 $"{caveObjects[i].name}: " +
                 $"{caveObjects[i].transform.position}",

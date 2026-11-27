@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a9dfef3d-afae-4b27-ab83-a7b54a20e703" name="Changes" comment="base AI + better organisation">
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+    <list default="true" id="a9dfef3d-afae-4b27-ab83-a7b54a20e703" name="Changes" comment="bugs fixes + updated monster attack + did some debugging on patrol points">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Cave_Level.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Cave_Level.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI/Core/MonsterAI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AI/Core/MonsterAI.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI/DecisionSystem/Calculator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AI/DecisionSystem/Calculator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI/DecisionSystem/DecisionMaker.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AI/DecisionSystem/DecisionMaker.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI/MovementSystem/MonsterMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AI/MovementSystem/MonsterMovement.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI/PerceptionSystem/ScentSystem/ScentPerception.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AI/PerceptionSystem/ScentSystem/ScentPerception.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI/ScentSystem/ScentTrailManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AI/ScentSystem/ScentTrailManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Forest_Level.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Forest_Level.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameDirector/AreaIdentifier.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameDirector/AreaIdentifier.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameDirector/GameDirector.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameDirector/GameDirector.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ProceduralGeneration/ForestGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ProceduralGeneration/ForestGenerator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SceneTransitions/DungeonPortal.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SceneTransitions/DungeonPortal.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +71,15 @@
       <option name="project" value="LOCAL" />
       <updated>1794583150721</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="bugs fixes + updated monster attack + did some debugging on patrol points">
+      <option name="closed" value="true" />
+      <created>1795745818573</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1795745818573</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -83,6 +88,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="base AI" />
     <MESSAGE value="base AI + better organisation" />
-    <option name="LAST_COMMIT_MESSAGE" value="base AI + better organisation" />
+    <MESSAGE value="bugs fixes + updated monster attack + did some debugging on patrol points" />
+    <option name="LAST_COMMIT_MESSAGE" value="bugs fixes + updated monster attack + did some debugging on patrol points" />
   </component>
 </project>

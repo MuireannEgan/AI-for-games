@@ -35,6 +35,10 @@ public class GameDirector : MonoBehaviour
     private bool hasPreviousEncounter; 
 
 
+    [Header("Monster spawn sEttings")]
+    public int houndCave;
+    public int currentCave = -1;
+
 
     private void Awake()
     {
@@ -46,6 +50,8 @@ public class GameDirector : MonoBehaviour
         Instance = this;
         SceneManager.sceneLoaded += OnSceneLoaded;
         DontDestroyOnLoad(gameObject);
+        houndCave = Random.Range(1,4);
+        Debug.Log("Hound cave is : "+houndCave);
     }
 
     private void Update()
@@ -292,5 +298,14 @@ public class GameDirector : MonoBehaviour
         {
             Instance = null;
         }
+    }
+
+    public void setCurrentCave(int caveID){
+        currentCave = caveID;
+        Debug.Log("Player entering cave : "+currentCave);
+    }
+
+    public bool spawnHound(){
+        return currentArea == AreaType.Cave && currentCave == houndCave;
     }
 }

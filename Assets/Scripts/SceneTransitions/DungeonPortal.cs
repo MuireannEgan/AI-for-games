@@ -7,11 +7,18 @@ public class DungeonPortal : MonoBehaviour
     [Header("Scene Transition")]
     [SerializeField] private string destinationScene = "Forest_Level";
 
+    [Header("Cave identity")]
+    [SerializeField] private int caveID = -1;
+
     private bool isTransitioning;
 
     private void Awake()
     {
         GetComponent<BoxCollider>().isTrigger = true;
+    }
+
+    public void setCaveID(int id){
+        caveID = id;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -34,6 +41,9 @@ public class DungeonPortal : MonoBehaviour
         }
 
         isTransitioning = true;
+        if(GameDirector.Instance != null){
+            GameDirector.Instance.setCurrentCave(caveID);
+        }
         SceneManager.LoadScene(destinationScene);
     }
 }
