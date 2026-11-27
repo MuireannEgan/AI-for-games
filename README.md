@@ -47,7 +47,9 @@ intended gameplay loop is not fully integrated.
 # Individual Contribution - Monster AI and scent detection
 
 **Module:** CS4096 — AI for Games
+
 **University:** University of Limerick
+
 **Developer :** Muireann Egan (24429988)
 >
 ## Overview
@@ -76,7 +78,7 @@ My individual contribution to this project focused on developing a reusable mons
 8. hint : the hound always spawns in the second dungeon
 >
 >
-##Testing Individual Features
+## Testing Individual Features
 >
 ### Patrol behaviour
 Watch the hound from a distance before it detects the player's scent. The hound will patrol its assigned area.
