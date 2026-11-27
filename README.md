@@ -19,7 +19,7 @@ capabilities.
 | Contributor | Development Branches |
 |---|---|
 | [Miriam-Codes](https://github.com/Miriam-Codes) | [Hearing Monster AI (Final Demonstration)](https://github.com/MuireannEgan/AI-for-games/tree/feature/hearing-monster-ai), [Procedural Generation](https://github.com/MuireannEgan/AI-for-games/tree/feature/procedural-generation), [Cave Environment](https://github.com/MuireannEgan/AI-for-games/tree/feature/cave-environment) |
-| [MuireannEgan](https://github.com/MuireannEgan) | To be added |
+| [MuireannEgan](https://github.com/MuireannEgan) | [Main] (https://github.com/MuireannEgan/AI-for-games) |
 | [NoviceTechIE-ttv](https://github.com/NoviceTechIE-ttv) | [GameDirector/ProgressManager Script/Object Folder](https://github.com/MuireannEgan/AI-for-games/tree/GameDirector-ProgressManager/Assets/Scripts/GameDirector) |
 | [maciekLawinski](https://github.com/maciekLawinski) | To be added |
 
