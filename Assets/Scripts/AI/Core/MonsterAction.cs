@@ -6,6 +6,7 @@ public enum MonsterAction{
     Investigate,
     Chase,
     Search,
+    Attack,
     Return
 
 
