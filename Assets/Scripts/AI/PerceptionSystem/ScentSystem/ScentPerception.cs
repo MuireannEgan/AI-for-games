@@ -37,4 +37,9 @@ public class ScentPerception : MonsterPerception{
     return true;
     }
 
+    private void OnDrawGizmosSelected(){
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, detectionRadius);
+    }
+
 }

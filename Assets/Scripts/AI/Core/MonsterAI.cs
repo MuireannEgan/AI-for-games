@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MonsterAI : MonoBehaviour
 {
@@ -21,6 +22,12 @@ public class MonsterAI : MonoBehaviour
     [Header("Current AI State")]
     public MonsterState currentState = MonsterState.Idle;
 
+    [Header("Attack settings")]
+    public Transform player;
+    public string respawnScene = "Forest_Level";
+    public float attackRange = 1.5f;
+    public LayerMask attackObstacleMask;
+
     private float nextDecisionTime;
     private float searchEndTime;
 
@@ -36,12 +43,14 @@ public class MonsterAI : MonoBehaviour
         if (movement == null)
             movement = GetComponent<MonsterMovement>();
 
-        if (decisionMaker != null && decisionMaker.utilityCalculator == null){
-            decisionMaker.utilityCalculator = GetComponent<UtilityCalculator>();
+        if (decisionMaker != null && decisionMaker.calculator == null){
+            decisionMaker.calculator = GetComponent<Calculator>();
         }
     }
 
     private void Start(){
+        currentState = MonsterState.Idle;
+
         if (movement != null && movement.HasPatrolPoints){
             ChangeState(MonsterState.Patrol);
         }else{
@@ -61,6 +70,9 @@ public class MonsterAI : MonoBehaviour
         if (decisionMaker == null || movement == null)
             return;
 
+        if(TryAttackPlayer())
+            return;
+
         if (currentState == MonsterState.Search && Time.time >= searchEndTime){
             memory.ClearMemory();
         }
@@ -75,6 +87,10 @@ public class MonsterAI : MonoBehaviour
                 out detectedConfidence
             );
         }
+        Debug.Log("Perception assigned : "+ (perception != null));
+        Debug.Log("Scent detected : "+ currentlyDetected);
+        Debug.Log("Detection confidence : "+ detectedConfidence);
+        Debug.Log("Detected position : " + detectedPosition);
 
         if (currentlyDetected){
             memory.RecordDetection(
@@ -139,12 +155,13 @@ public class MonsterAI : MonoBehaviour
     }
 
     private void ChangeState(MonsterState newState){
+        Debug.Log("Monster changing state to : "+ newState);
         if (currentState == newState)
             return;
 
         currentState = newState;
 
-        Debug.Log(gameObject.name + " changed state to: " + newState);
+        Debug.Log(gameObject.name +" changed state to : " + newState);
 
 
         switch (newState){
@@ -235,4 +252,40 @@ public class MonsterAI : MonoBehaviour
             speed
         );
     }
+
+
+    private bool TryAttackPlayer(){
+        if(player == null || string.IsNullOrEmpty(respawnScene)){
+            return false;
+        }
+
+        if(currentState != MonsterState.Chase){
+            return false;
+        }
+
+
+        float distance = Vector3.Distance(transform.position, player.position);
+        if(distance> attackRange){
+            return false;
+        }
+
+        if(Physics.Linecast(transform.position+Vector3.up*0.5f, player.position + Vector3.up *0.5f, attackObstacleMask)){
+                return false;
+            }
+
+        ChangeState(MonsterState.Attack);
+        Debug.Log("player attcaked");
+        RespawnPlayer();
+        return true;
+
+    }
+
+    private void RespawnPlayer(){
+        memory.ClearMemory();
+        Debug.Log("Player respawning in : "+ respawnScene);
+        SceneManager.LoadScene(respawnScene);
+        ChangeState(MonsterState.Return);
+
+    }
+
 }

@@ -228,9 +228,18 @@ public class MonsterMovement : MonoBehaviour{
             Debug.LogWarning("monster destination outside grid");
             return null;
         }
-        if(!startNode.walkable || !targetNode.walkable){
-            Debug.LogWarning("Start or end loaction is not walkable");
+        if(!startNode.walkable){
+            Debug.LogWarning("Starting node is not walkable");
             return null;
+        }
+
+        if(!targetNode.walkable){
+            targetNode = FindNearestWalkableNode(targetNode);
+
+            if(targetNode == null){
+                Debug.LogWarning("No nearby walkable destination");
+                return null;
+            }
         }
 
         ResetGridCosts();
@@ -326,7 +335,6 @@ public class MonsterMovement : MonoBehaviour{
         }
 
         List<Vector3> newPath = FindPath( transform.position, destination);
-
         if(newPath == null){
             StopMovement();
             return;
@@ -397,19 +405,31 @@ public class MonsterMovement : MonoBehaviour{
     //patrol movement
 
     public void MoveToNextPatrolPoint(){
-        if (!HasPatrolPoints){
-            StopMovement();
+        if (patrolPoints == null){
             return;
         }
 
-        for(int i = 0; i < patrolPoints.Length; i++){
+        if (patrolPoints.Length == 0){
+            Debug.LogError("No patrol points in array");
+            return;
+        }
+
+        for (int i = 0; i < patrolPoints.Length; i++){
             int index = currentPatrolIndex;
-            currentPatrolIndex =(currentPatrolIndex + 1) % patrolPoints.Length;
-            if(patrolPoints[index] == null)
+            currentPatrolIndex = (currentPatrolIndex + 1) % patrolPoints.Length;
+
+            if (patrolPoints[index] == null){
+                Debug.LogError("Patrol point is null : "+ index );
                 continue;
+            }
+
+            Debug.Log("dog moving to patrol point: " + patrolPoints[index].name);
+
             MoveTo(patrolPoints[index].position, patrolSpeed);
             return;
         }
+
+        Debug.LogError("No valid patrol points");
         StopMovement();
     }
 
@@ -482,5 +502,36 @@ public class MonsterMovement : MonoBehaviour{
                 }
             }
         }
+    }
+
+    private GridNode FindNearestWalkableNode(GridNode blockedNode){
+
+        GridNode nearestNode = null;
+        float nearestDistance = float.PositiveInfinity;
+
+        for(int x = -2; x <= 2; x++){
+            for(int z = -2; z <= 2; z++){
+
+                Vector3 position = blockedNode.worldPosition +
+                    new Vector3(x * cellSize, 0, z * cellSize);
+
+                GridNode candidate = GetNodeFromWorldPosition(position);
+
+                if(candidate == null || !candidate.walkable)
+                    continue;
+
+                float distance = Vector3.Distance(
+                    blockedNode.worldPosition,
+                    candidate.worldPosition
+                );
+
+                if(distance < nearestDistance){
+                    nearestDistance = distance;
+                    nearestNode = candidate;
+                }
+            }
+        }
+
+        return nearestNode;
     }
 }

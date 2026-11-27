@@ -4,9 +4,14 @@
     <list default="true" id="a9dfef3d-afae-4b27-ab83-a7b54a20e703" name="Changes" comment="base AI + better organisation">
       <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Cave_Level.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Cave_Level.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI/Core/MonsterAI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AI/Core/MonsterAI.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI/DecisionSystem/Calculator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AI/DecisionSystem/Calculator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI/DecisionSystem/DecisionMaker.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AI/DecisionSystem/DecisionMaker.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI/MovementSystem/MonsterMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AI/MovementSystem/MonsterMovement.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI/PerceptionSystem/ScentSystem/ScentPerception.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AI/PerceptionSystem/ScentSystem/ScentPerception.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI/ScentSystem/ScentEmitter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AI/ScentSystem/ScentEmitter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI/ScentSystem/ScentTrailManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AI/ScentSystem/ScentTrailManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

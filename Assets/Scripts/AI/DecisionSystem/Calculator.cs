@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class UtilityCalculator : MonoBehaviour{
+public class Calculator : MonoBehaviour{
     [Header("Action Weights")]
     [Range(0f, 1f)]
     public float chaseWeight = 1f;

@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public class DecisionMaker : MonoBehaviour{
-    public UtilityCalculator utilityCalculator;
+    public Calculator calculator;
 
     public MonsterAction Decide(
         bool currentlyDetected,
@@ -25,7 +25,7 @@ public class DecisionMaker : MonoBehaviour{
         float highestScore = -1f;
 
         foreach (MonsterAction action in possibleActions){
-            float score = utilityCalculator.ScoreAction(
+            float score = calculator.ScoreAction(
                 action,
                 currentlyDetected,
                 confidence,

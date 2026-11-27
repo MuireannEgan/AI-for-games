@@ -6,7 +6,7 @@ public class ScentTrailManager : MonoBehaviour{
     [Header("Scent Settinfs")]
 
     [Range(0f,1f)]
-    public float InitialScentStrength;
+    public float InitialScentStrength = 1f;
 
     [Min(0.1f)]
     public float scentLifetime = 20f;
@@ -26,8 +26,12 @@ public class ScentTrailManager : MonoBehaviour{
     }
 
     public void AddScentPoint(Vector3 position){
-        ScentPoint newPoint = new ScentPoint(position, InitialScentStrength, scentLifetime);
+        ScentPoint newPoint = new ScentPoint(position, 1f, 20f);
         scentPoints.Add(newPoint);
+    }
+
+    public void ClearScentTrail(){
+        scentPoints.Clear();
     }
 
     private void RemoveExpiredScent(){
