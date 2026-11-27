@@ -89,13 +89,13 @@ Move around the dungeon to generate a scent trail. When the hound detects the tr
 ### Monster memory
 Due to the fact i was unable to implement the fountains you will need to manually turn off the script "ScentEmitter" for "playerCapsule" as seen in the heirarchy on the left. You can now watch as the hound will go to your last known area and either investigate or return to its patrol.
 >
-###Pathfinding 
+### Pathfinding 
 Move around obstacles and through different areas of the dungeon and watch how the hound chases.
 >
-###Utility-Based decision making
+### Utility-Based decision making
 Open the unity console to observe the state transitions between patrol, investgate, chase, search and return
 >
-##Relevant Source Files
+## Relevant Source Files
 | Script | Purpose |
 |---|---|
 | MonsterAI.cs | Controls monster behaviour and state transitions|
@@ -111,7 +111,7 @@ Open the unity console to observe the state transitions between patrol, investga
 ### Debugging
 The unity console can be used to observe state transitions, generated navigation grids and calculated paths during gameplay.
 >
-###Known Limitations
+### Known Limitations
 The custom pathfinding system may experience some difficulties navigating close to certain obstacles.
 
 
