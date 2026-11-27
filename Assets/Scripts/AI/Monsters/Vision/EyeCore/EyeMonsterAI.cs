@@ -46,9 +46,9 @@ public class EyeMonsterAI : MonoBehaviour
         if (movement == null)
             movement = GetComponent<EyeMonsterMovement>();
 
-        if (decisionMaker != null && decisionMaker.utilityCalculator == null)
+        if (decisionMaker != null && decisionMaker.calculator == null)
         {
-            decisionMaker.utilityCalculator = GetComponent<UtilityCalculator>();
+            decisionMaker.calculator = GetComponent<Calculator>();
         }
 
         if (perception != null && movement != null)
