@@ -37,6 +37,7 @@ public class GameDirector : MonoBehaviour
 
     [Header("Monster spawn sEttings")]
     public int houndCave;
+    public int eyeCave;
     public int currentCave = -1;
 
 
@@ -50,7 +51,8 @@ public class GameDirector : MonoBehaviour
         Instance = this;
         SceneManager.sceneLoaded += OnSceneLoaded;
         DontDestroyOnLoad(gameObject);
-        houndCave = Random.Range(1,4);
+        houndCave = 2;
+        eyeCave = 1;
         Debug.Log("Hound cave is : "+houndCave);
     }
 
@@ -308,4 +310,8 @@ public class GameDirector : MonoBehaviour
     public bool spawnHound(){
         return currentArea == AreaType.Cave && currentCave == houndCave;
     }
+
+    public bool spawnEye(){
+            return currentArea == AreaType.Cave && currentCave == eyeCave;
+        }
 }

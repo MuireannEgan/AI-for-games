@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a9dfef3d-afae-4b27-ab83-a7b54a20e703" name="Changes" comment="bugs fixes + updated monster attack + did some debugging on patrol points">
+    <list default="true" id="a9dfef3d-afae-4b27-ab83-a7b54a20e703" name="Changes" comment="caves are now assigned an ID * hound is randomly assigned a cave ID and will only appear in said cave">
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Cave_Level.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Cave_Level.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Forest_Level.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Forest_Level.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameDirector/AreaIdentifier.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameDirector/AreaIdentifier.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameDirector/GameDirector.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameDirector/GameDirector.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ProceduralGeneration/ForestGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ProceduralGeneration/ForestGenerator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SceneTransitions/DungeonPortal.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SceneTransitions/DungeonPortal.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +77,15 @@
       <option name="project" value="LOCAL" />
       <updated>1795745818573</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="caves are now assigned an ID * hound is randomly assigned a cave ID and will only appear in said cave">
+      <option name="closed" value="true" />
+      <created>1795748431590</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1795748431590</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -89,6 +95,7 @@
     <MESSAGE value="base AI" />
     <MESSAGE value="base AI + better organisation" />
     <MESSAGE value="bugs fixes + updated monster attack + did some debugging on patrol points" />
-    <option name="LAST_COMMIT_MESSAGE" value="bugs fixes + updated monster attack + did some debugging on patrol points" />
+    <MESSAGE value="caves are now assigned an ID * hound is randomly assigned a cave ID and will only appear in said cave" />
+    <option name="LAST_COMMIT_MESSAGE" value="caves are now assigned an ID * hound is randomly assigned a cave ID and will only appear in said cave" />
   </component>
 </project>
